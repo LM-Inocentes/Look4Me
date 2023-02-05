@@ -4,15 +4,15 @@ export interface IUser{
     id: string;
     email: string;
     password: string;
-    Firstname: string;
-    Lastname: string;
+    Fullname: string;
+    contactinfo: string;
     isAdmin:boolean;
 }
 
 export const UserSchema = new Schema<IUser>(
     {
-        Firstname: { type:String, required:true },
-        Lastname: { type:String, required:true },
+        Fullname: { type:String, required:true },
+        contactinfo: { type:String, required:true },
         email: { type:String, required:true, unique:true },
         password: { type:String, required:true },
         isAdmin: { type:Boolean, required:true },

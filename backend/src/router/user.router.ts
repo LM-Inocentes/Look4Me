@@ -1,14 +1,12 @@
 import { Router } from 'express';
-import { sample_users } from '../data';
 import jwt from 'jsonwebtoken'
 import  asyncHandler  from 'express-async-handler';
 import { IUser, UserModel } from '../models/user.model';
-import { HTTP_BAD_REQUEST } from '../constants/httpstatus';
 import bcrypt from 'bcryptjs';
 
 
 const router = Router();
-
+/*
 router.get("/seed", asyncHandler( async (req, res) =>{
     const usersCount = await UserModel.countDocuments();
     if(usersCount>0){
@@ -20,7 +18,7 @@ router.get("/seed", asyncHandler( async (req, res) =>{
     res.send("Seed is DONE!");
 }
 ))
-
+*/
 
 
 router.post("/login",  asyncHandler(
@@ -28,14 +26,14 @@ router.post("/login",  asyncHandler(
       const {email, password} = req.body;
       const user = await UserModel.findOne({ email });
       if(!user){                                                                    //if user email does not exist
-        res.status(HTTP_BAD_REQUEST).send("Email does not exist");
+        res.status(400).send("Email does not exist");
         return;
       }
       const isPassMatch = await bcrypt.compare(password, user.password);           
       if(isPassMatch) {
         res.send(generateTokenResponse(user));
       }
-      res.status(HTTP_BAD_REQUEST).send("Incorrect Password");
+      res.status(400).send("Incorrect Password");
       return;
     }
 ))
@@ -43,19 +41,19 @@ router.post("/login",  asyncHandler(
 
 router.post('/register', asyncHandler(
     async (req, res) => {
-      const {Firstname, Lastname, email, password} = req.body;
+      const {Fullname, email, contactinfo, password} = req.body;
       const user = await UserModel.findOne({email});
       if(user){
-        res.status(HTTP_BAD_REQUEST)
+        res.status(400)
         .send('User email already exist!');
         return;
       }
     const salt = await bcrypt.genSalt(10); 
     const newUser:IUser = {
       id:'',
-      Firstname,
-      Lastname,
+      Fullname,
       email: email.toLowerCase(),
+      contactinfo,
       password: await bcrypt.hash(password, salt),       //hash and salts the password with bcrypt
       isAdmin: false
     }
@@ -84,8 +82,8 @@ const generateTokenResponse = (user:any) => {
         id: user.id,
         email: user.email,
         password: user.password,
-        Firstname: user.Firstname,
-        Lastname: user.Lastname,
+        Fullname: user.Fullname,
+        contactinfo: user.contactinfo,
         isAdmin: user.isAdmin,
         token: token,
       };
