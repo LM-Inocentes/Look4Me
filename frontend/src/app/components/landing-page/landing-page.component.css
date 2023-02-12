@@ -49,7 +49,10 @@ background-size: cover;
   left: 40px;
 }
 
-.brand { font-size: 20px; }
+.brand {
+  font-size: 20px;
+  color: #fff;
+}
 
 .text-box {
   position: absolute;
