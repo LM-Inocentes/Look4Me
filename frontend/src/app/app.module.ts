@@ -16,6 +16,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { FoundInfoPageComponent } from './components/found-info-page/found-info-page.component';
+import { LostInfoPageComponent } from './components/lost-info-page/lost-info-page.component';
+import { PostFoundComponent } from './components/post-found/post-found.component';
+import { PostLostComponent } from './components/post-lost/post-lost.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,12 @@ import { HeaderComponent } from './components/header/header.component';
     InputLoadingComponent,
     TextInputComponent,
     InputValidationComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfilePageComponent,
+    FoundInfoPageComponent,
+    LostInfoPageComponent,
+    PostFoundComponent,
+    PostLostComponent
   ],
   imports: [
     BrowserModule,
