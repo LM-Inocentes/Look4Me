@@ -33,6 +33,27 @@
     background: rgba(76, 216, 255, 0.8);
   }
 
+  .menu-container{
+    position: relative;
+
+  }
+
+  .menu{
+    position:absolute;
+    z-index:1;
+    display: none;
+  }
+
+  .menu-container:hover .menu{
+    background: rgb(10, 93, 121);
+    display: block;
+  }
+
+  .menu a:hover {
+    background: rgba(76, 216, 255, 0.8);
+    display: block;
+  }
+
 
   header .logo {
     float: left;

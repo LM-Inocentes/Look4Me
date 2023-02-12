@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!:FormGroup;
   isSubmitted = false;
-  returnUrl = '/lost&found';
+  returnUrl = '/home';
 
   constructor(private formBuilder:FormBuilder, private userService:UserService,
     private activatedRoute:ActivatedRoute, private router:Router) { }

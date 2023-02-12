@@ -5,9 +5,9 @@
   <div class="nav">
     <ul>
       <li>
-        <a href="">Lost Items</a>
+        <a >Lost Items</a>
       <li>
-        <a href="">Found Items</a>
+        <a >Found Items</a>
       </li>
       <li *ngIf="!isAuth">
         <a routerLink="/login">Login</a>
@@ -15,6 +15,7 @@
       <li *ngIf="isAuth" class="menu-container">
         <a>Profile</a>
         <div class="menu">
+          <a routerLink="/customer-profile">Profile</a>
           <a routerLink="/customer-profile">History</a>
           <a (click)="logout()">Logout</a>
         </div>

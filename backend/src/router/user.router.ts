@@ -55,7 +55,6 @@ router.post('/register', asyncHandler(
       email: email.toLowerCase(),
       contactinfo,
       password: await bcrypt.hash(password, salt),       //hash and salts the password with bcrypt
-      isAdmin: false
     }
 
     const dbUser = await UserModel.create(newUser);  
@@ -74,7 +73,7 @@ router.get("/:email", asyncHandler(
 
 const generateTokenResponse = (user:any) => {
     const token = jwt.sign({
-        id: user.id, email:user.email, isAdmin: user.isAdmin
+        id: user.id, email:user.email
     },"Some Text",{
         expiresIn: "30d"
     })
@@ -84,7 +83,6 @@ const generateTokenResponse = (user:any) => {
         password: user.password,
         Fullname: user.Fullname,
         contactinfo: user.contactinfo,
-        isAdmin: user.isAdmin,
         token: token,
       };
 }

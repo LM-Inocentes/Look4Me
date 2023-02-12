@@ -6,7 +6,6 @@ export interface IUser{
     password: string;
     Fullname: string;
     contactinfo: string;
-    isAdmin:boolean;
 }
 
 export const UserSchema = new Schema<IUser>(
@@ -15,7 +14,6 @@ export const UserSchema = new Schema<IUser>(
         contactinfo: { type:String, required:true },
         email: { type:String, required:true, unique:true },
         password: { type:String, required:true },
-        isAdmin: { type:Boolean, required:true },
         
     },{
         toJSON:{
