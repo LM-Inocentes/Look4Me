@@ -19,8 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { FoundInfoPageComponent } from './components/found-info-page/found-info-page.component';
 import { LostInfoPageComponent } from './components/lost-info-page/lost-info-page.component';
-import { PostFoundComponent } from './components/post-found/post-found.component';
-import { PostLostComponent } from './components/post-lost/post-lost.component';
+import { PostItemPageComponent } from './components/post-item-page/post-item-page.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +35,7 @@ import { PostLostComponent } from './components/post-lost/post-lost.component';
     ProfilePageComponent,
     FoundInfoPageComponent,
     LostInfoPageComponent,
-    PostFoundComponent,
-    PostLostComponent
+    PostItemPageComponent
   ],
   imports: [
     BrowserModule,

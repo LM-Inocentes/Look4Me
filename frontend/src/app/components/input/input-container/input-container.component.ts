@@ -9,8 +9,8 @@ export class InputContainerComponent implements OnInit {
 
   @Input()
   label!:string;
-
-
+  @Input()
+  placeholder!:string;
 
   constructor() { }
 

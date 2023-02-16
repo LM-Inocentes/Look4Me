@@ -14,6 +14,8 @@ showErrorsWhen:boolean = true;
 @Input()
 label!: string;
 @Input()
+placeholder!: string;
+@Input()
 type: 'text' | 'password' | 'date' |'email' = 'text' ;
 
 get formControl(){

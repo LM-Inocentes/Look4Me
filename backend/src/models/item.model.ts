@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose';
 
 export interface IItem{
+    poster_email: string;
+    poster_contactinfo: string;
     type: boolean;
     name: string;
     img: string;
@@ -13,6 +15,8 @@ export interface IItem{
 
 export const ItemSchema = new Schema<IItem>(
     {
+        poster_contactinfo: { type:String, required:true },
+        poster_email: { type:String, required:true },
         type: { type:Boolean, required:true },
         name: { type:String, required:true },
         img: { type:String, required:true },

@@ -32,9 +32,9 @@ router.post("/login",  asyncHandler(
       const isPassMatch = await bcrypt.compare(password, user.password);           
       if(isPassMatch) {
         res.send(generateTokenResponse(user));
+        return;
       }
-      res.status(400).send("Incorrect Password");
-      return;
+      res.status(400).send("Incorrect Password"); 
     }
 ))
 
