@@ -16,7 +16,7 @@ export const ItemSchema = new Schema<IItem>(
         type: { type:Boolean, required:true },
         name: { type:String, required:true },
         img: { type:String, required:true },
-        characteristic: { type:String, required:true, unique:true },
+        characteristic: { type:String, required:true},
         loc_found: { type:String, required:true },
         date_found: { type:String, required:true },
         more_info: { type:String, required:true },
