@@ -18,7 +18,8 @@ const router = Router();
                 name, 
                 img: result.secure_url, 
                 characteristic, 
-                loc_found, date_found,
+                loc_found, 
+                date_found,
                 more_info, 
                 status
         }
