@@ -11,6 +11,7 @@
           <text-input [control] = "form.more_info" [showErrorsWhen] = "isSubmitted" label = "More Details" placeholder = "Give more specific description"></text-input>
           <label for="file">Item Image</label>
           <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
+
           <input type="submit" name="" value="Create">
       </form>
 

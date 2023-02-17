@@ -20,6 +20,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { FoundInfoPageComponent } from './components/found-info-page/found-info-page.component';
 import { LostInfoPageComponent } from './components/lost-info-page/lost-info-page.component';
 import { PostItemPageComponent } from './components/post-item-page/post-item-page.component';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,9 @@ import { PostItemPageComponent } from './components/post-item-page/post-item-pag
       newestOnTop: false,
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ItemsService } from 'src/app/services/items.service';
@@ -24,6 +24,7 @@ export class PostItemPageComponent implements OnInit{
   isSubmitted = false;
   returnUrl = 'home';
   img!: File;
+  imgURL!: string;
 
 
   constructor(private userService:UserService, private itemService:ItemsService ,private formBuilder:FormBuilder , private router:Router) {
@@ -49,55 +50,38 @@ export class PostItemPageComponent implements OnInit{
   }
 
   submit(){
-/*
-    const imageBlob = this.fileInput.nativeElement.files[0];
-    const file = new FormData();
-    file.set('file', imageBlob);
-    this.itemService.upload(file).subscribe();
-*/
     this.isSubmitted = true;
     if(this.itemForm.invalid) return;
 
     const fv= this.itemForm.value;
 
-    const item :IItem = {
-      poster_email: this.user.email,
-      poster_contactinfo: this.user.contactinfo,
-      type: true,
-      name: fv.name,
-      img: "",
-      characteristic: fv.characteristic,
-      loc_found: fv.loc_found,
-      date_found: fv.date_found,
-      more_info: fv.more_info,
-      status: false,
-    };
+      const item :IItem = {
+        poster_email: this.user.email,
+        poster_contactinfo: this.user.contactinfo,
+        type: true,
+        name: fv.name,
+        img: "",
+        characteristic: fv.characteristic,
+        loc_found: fv.loc_found,
+        date_found: fv.date_found,
+        more_info: fv.more_info,
+        status: false,
+      };
+      console.log(item);
 
-    console.log(item);
-
-    this.itemService.postItem(item).subscribe(_ => {
-      this.router.navigateByUrl(this.returnUrl);
-    })
-  }
-
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
     const reader = new FileReader();
 
     reader.addEventListener('load', (event: any) => {
-
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-
-      this.itemService.upload(this.selectedFile.file).subscribe(
-        (res) => {
-
-        },
-        (err) => {
-
-        })
+      this.selectedFile = new ImageSnippet(event.target.result, this.img);
+      this.itemService.postItem(item, this.selectedFile.file).subscribe(_ => {
+        this.router.navigateByUrl(this.returnUrl);
+      })
     });
+    reader.readAsDataURL(this.img);
+  }
 
-    reader.readAsDataURL(file);
+  processFile(imageInput: any) {
+    this.img = imageInput.files[0];
   }
 
 }
