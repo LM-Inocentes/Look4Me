@@ -26,6 +26,6 @@ export class ItemsService {
     formData.append('status', item.status.toString());
     formData.append('more_info', item.more_info);
 
-    return this.http.post<Item>(POST_ITEM_URL+'2', formData);
+    return this.http.post<Item>(POST_ITEM_URL, formData);
   }
 }

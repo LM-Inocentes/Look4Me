@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostItemPageComponent } from './post-item-page.component';
+import { PostFoundPageComponent } from './post-found-page.component';
 
-describe('PostItemPageComponent', () => {
-  let component: PostItemPageComponent;
-  let fixture: ComponentFixture<PostItemPageComponent>;
+describe('PostFoundPageComponent', () => {
+  let component: PostFoundPageComponent;
+  let fixture: ComponentFixture<PostFoundPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostItemPageComponent ]
+      declarations: [ PostFoundPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostItemPageComponent);
+    fixture = TestBed.createComponent(PostFoundPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,11 +10,7 @@
     background: rgb(10, 93, 121);
     z-index:120;
   }
-  header li {
-    float: left;
-    list-style-type:none;
-    border-right: 2px solid rgba(76, 216, 255, 0.8);
-  }
+
   header li a {
     float: left;
     width: 98px;
@@ -28,7 +24,7 @@
     letter-spacing: 1px;
     font: normal 62.5% "proxima-nova-alt", Helvetica, Arial, sans-serif;
   }
-  header li:hover {
+  header li a:hover {
     cursor: pointer;
     background: rgba(76, 216, 255, 0.8);
   }
@@ -56,7 +52,7 @@
 
 
   header .logo {
-    float: left;
+    float: right;
 
   }
 

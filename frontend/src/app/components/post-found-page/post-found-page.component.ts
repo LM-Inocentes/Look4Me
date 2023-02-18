@@ -10,21 +10,21 @@ class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
 
-@Component({
-  selector: 'app-post-item-page',
-  templateUrl: './post-item-page.component.html',
-  styleUrls: ['./post-item-page.component.css']
-})
-export class PostItemPageComponent implements OnInit{
 
-  selectedFile!: ImageSnippet;
+@Component({
+  selector: 'app-post-found-page',
+  templateUrl: './post-found-page.component.html',
+  styleUrls: ['./post-found-page.component.css']
+})
+export class PostFoundPageComponent implements OnInit {
+selectedFile!: ImageSnippet;
 
   user!:User;
   itemForm!:FormGroup;
   isSubmitted = false;
   returnUrl = 'home';
   img!: File;
-  imgURL!: string;
+  imgName!: string;
 
 
   constructor(private userService:UserService, private itemService:ItemsService ,private formBuilder:FormBuilder , private router:Router) {
@@ -51,7 +51,7 @@ export class PostItemPageComponent implements OnInit{
 
   submit(){
     this.isSubmitted = true;
-    if(this.itemForm.invalid) return;
+    if(this.itemForm.invalid && this.imgName) return;
 
     const fv= this.itemForm.value;
 
@@ -82,6 +82,7 @@ export class PostItemPageComponent implements OnInit{
 
   processFile(imageInput: any) {
     this.img = imageInput.files[0];
+    this.imgName = this.img.name;
   }
 
 }

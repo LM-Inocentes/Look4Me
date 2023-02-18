@@ -4,19 +4,37 @@
   </div>
   <div class="nav">
     <ul>
-      <li>
-        <a >Lost Items</a>
-      <li>
-        <a >Found Items</a>
+      <li class="menu-container">
+        <a>View</a>
+        <div class="menu">
+          <a >Lost Items</a>
+          <a >Found Items</a>
+        </div>
       </li>
+
+      <li class="menu-container">
+        <a>Post</a>
+        <div class="menu">
+          <span *ngIf="!isAuth" >
+            <a routerLink="/login">Lost Item</a>
+            <a routerLink="/login">Found Item</a>
+          </span>
+          <span *ngIf="isAuth">
+            <a>Lost Item</a>
+            <a routerLink="/post-found">Found Item</a>
+          </span>
+        </div>
+      </li>
+
       <li *ngIf="!isAuth">
         <a routerLink="/login">Login</a>
       </li>
+
       <li *ngIf="isAuth" class="menu-container">
         <a>Profile</a>
         <div class="menu">
           <a routerLink="/customer-profile">Profile</a>
-          <a routerLink="/customer-profile">History</a>
+          <a routerLink="/customer-profile">Post History</a>
           <a (click)="logout()">Logout</a>
         </div>
       </li>
