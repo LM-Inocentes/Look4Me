@@ -37,6 +37,13 @@ const router = Router();
     }
   ))
 
+  router.get("/lost", asyncHandler(
+    async (req, res) =>{
+        const items = await ItemModel.find({type: false});
+        res.send(items);                       //sending events from database
+    }
+  ))
+
 
 export default router;
 
