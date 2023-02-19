@@ -31,15 +31,14 @@ selectedFile!: ImageSnippet;
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
     });
-    console.log(this.user);
   }
 
   ngOnInit(): void {
     this.itemForm = this.formBuilder.group({
       name: ['', Validators.required],
       characteristic: ['', Validators.required],
-      loc_found: ['', Validators.required],
-      date_found: ['', Validators.required],
+      loc: ['', Validators.required],
+      date: ['', Validators.required],
       more_info: ['', Validators.required],
     });
   }
@@ -62,12 +61,12 @@ selectedFile!: ImageSnippet;
         name: fv.name,
         img: "",
         characteristic: fv.characteristic,
-        loc_found: fv.loc_found,
-        date_found: fv.date_found,
+        loc: fv.loc,
+        date: fv.date,
         more_info: fv.more_info,
         status: false,
+        id: "",
       };
-      console.log(item);
 
     const reader = new FileReader();
 

@@ -6,8 +6,8 @@
       <form [formGroup]="itemForm"  (ngSubmit)="submit()">
           <text-input [control] = "form.name" [showErrorsWhen] = "isSubmitted" label = "Item Name" placeholder = "e.g. keys, id, wallet"></text-input>
           <text-input [control] = "form.characteristic" [showErrorsWhen] = "isSubmitted" label = "Characteristic" placeholder = "e.g. blue, small"></text-input>
-          <text-input [control] = "form.loc_found" [showErrorsWhen] = "isSubmitted" label = "Location Found" placeholder = "e.g. outside CIT gate, Natalio B. Bacalso Ave area"></text-input>
-          <text-input type="date" [control] = "form.date_found" [showErrorsWhen] = "isSubmitted" label = "Date Found"></text-input>
+          <text-input [control] = "form.loc" [showErrorsWhen] = "isSubmitted" label = "Location Found" placeholder = "e.g. outside CIT gate, Natalio B. Bacalso Ave area"></text-input>
+          <text-input type="date" [control] = "form.date" [showErrorsWhen] = "isSubmitted" label = "Date Found"></text-input>
           <text-input [control] = "form.more_info" [showErrorsWhen] = "isSubmitted" label = "More Details" placeholder = "Give more specific description"></text-input>
 
 

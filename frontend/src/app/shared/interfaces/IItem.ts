@@ -5,8 +5,9 @@ export interface IItem{
   name: string;
   img: string;
   characteristic: string;
-  loc_found: string;
-  date_found: string;
+  loc: string;
+  date: string;
   more_info: string;
   status: boolean;
+  id: string;
 }

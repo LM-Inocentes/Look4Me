@@ -22,6 +22,8 @@ import { LostInfoPageComponent } from './components/lost-info-page/lost-info-pag
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { PostLostPageComponent } from './components/post-lost-page/post-lost-page.component';
 import { PostFoundPageComponent } from './components/post-found-page/post-found-page.component';
+import { FoundItemsPageComponent } from './components/found-items-page/found-items-page.component';
+import { LostItemsPageComponent } from './components/lost-items-page/lost-items-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { PostFoundPageComponent } from './components/post-found-page/post-found-
     FoundInfoPageComponent,
     LostInfoPageComponent,
     PostLostPageComponent,
-    PostFoundPageComponent
+    PostFoundPageComponent,
+    FoundItemsPageComponent,
+    LostItemsPageComponent
   ],
   imports: [
     BrowserModule,

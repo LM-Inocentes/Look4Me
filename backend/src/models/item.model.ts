@@ -1,14 +1,15 @@
 import { Schema, model } from 'mongoose';
 
 export interface IItem{
+    id: string;
     poster_email: string;
     poster_contactinfo: string;
     type: boolean;
     name: string;
     img: string;
     characteristic: string;
-    loc_found: string;
-    date_found: string;
+    loc: string;
+    date: string;
     more_info: string;
     status: boolean;
 }
@@ -21,8 +22,8 @@ export const ItemSchema = new Schema<IItem>(
         name: { type:String, required:true },
         img: { type:String, required:true },
         characteristic: { type:String, required:true},
-        loc_found: { type:String, required:true },
-        date_found: { type:String, required:true },
+        loc: { type:String, required:true },
+        date: { type:String, required:true },
         more_info: { type:String, required:true },
         status: { type:Boolean, required:true },
     },{

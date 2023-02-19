@@ -1,0 +1,23 @@
+<app-header style="position: relative; top: -17px;"></app-header>
+<ul>
+  <li *ngFor="let item of items">
+    <a routerLink="/customer-event-list/{{item.id}}">
+      <img [src]="item.img" [alt]="item.name" />
+      <div class="content">
+        <div class="name">
+          {{item.name | uppercase}}
+        </div>
+        <div class="product-item-footer">
+          <div class="info">
+            <span>Characteristic: {{item.characteristic}}</span>
+            <span>Location Found: {{item.loc}}</span>
+            <span>Date Found: {{item.date | date: 'MM/dd/yyyy'}}</span>
+            <span>More Info: {{item.more_info}}</span>
+            <span *ngIf="!item.status">Status: Not Yet Retrieved</span>
+            <span *ngIf="item.status">Status: Item Retrieved</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>

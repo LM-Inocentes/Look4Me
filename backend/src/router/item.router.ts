@@ -11,21 +11,29 @@ const router = Router();
   router.post("/post", upload.single('image') ,asyncHandler(
     async (req, res) => {
         const result = await cloudinary.uploader.upload(req.file?.path);
-        const {poster_email, poster_contactinfo, type, name, characteristic, loc_found, date_found, more_info, status} = req.body;
+        const {poster_email, poster_contactinfo, type, name, characteristic, loc, date, more_info, status} = req.body;
         const Item: IItem = {
-                poster_email: poster_email,
-                poster_contactinfo: poster_contactinfo,
-                type: type,
-                name: name, 
+                poster_email,
+                poster_contactinfo,
+                type,
+                name,
                 img: result.secure_url,
-                characteristic: characteristic, 
-                loc_found: loc_found, 
-                date_found: date_found,
-                more_info: more_info, 
-                status: status,
+                characteristic,
+                loc,
+                date,
+                more_info,
+                status,
+                id: "",
         }
         const dbItem = await ItemModel.create(Item);
         res.send(dbItem);
+    }
+  ))
+
+  router.get("/found", asyncHandler(
+    async (req, res) =>{
+        const items = await ItemModel.find({type: true});
+        res.send(items);                       //sending events from database
     }
   ))
 
