@@ -4,7 +4,7 @@ ul{
   align-items: center;
   flex-wrap: wrap;
   list-style-type: none;
-  padding-top: 100px;
+  padding-top: 5px;
 }
 
 li a{
@@ -103,3 +103,49 @@ button {
   box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
+
+
+h2{
+  margin:0px;
+  padding:0px;
+}
+.logo-container ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display:inline-block;
+  text-decoration:none;
+}
+.logo-container ul li {
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    float: left;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  text-decoration:none;
+}
+.logo-container ul li a{
+  text-decoration:none;
+  display: inline-block;
+}
+.logo-holder{
+  text-align:center;
+  text-decoration:none;
+}
+/* Logo-2 */
+.logo-2 h3 {
+    color: rgba(76, 216, 255);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    text-transform: uppercase;
+    line-height:1;
+    background: rgba(10, 93, 121, 0.804);
+    border-radius: 1rem;
+    padding: 8px;
+    margin-top: 60px;
+}
+
