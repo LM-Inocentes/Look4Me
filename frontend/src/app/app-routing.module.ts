@@ -18,6 +18,8 @@ const routes: Routes = [
   {path : 'post-lost',title: 'LOOK4ME:Post',  component : PostLostPageComponent},
   {path : 'found-items',title: 'LOOK4ME:Found',  component : FoundItemsPageComponent},
   {path : 'lost-items',title: 'LOOK4ME:Lost',  component : LostItemsPageComponent},
+  {path : 'found-items/:searchTerm',title: 'LOOK4ME:Found',  component : FoundItemsPageComponent},
+  {path : 'lost-items/:searchTerm',title: 'LOOK4ME:Lost',  component : LostItemsPageComponent},
 ];
 
 @NgModule({

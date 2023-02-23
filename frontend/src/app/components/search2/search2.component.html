@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="wrapper">
+    <input #input type="text" name="search" id="search" placeholder="What are you looking for?" (keyup.enter)="search(input.value)"
+    [value]="searchTerm" (input)="search(input.value)">
+    <button>
+      <img src="../../../assets/logo.png" height="38" width="38" class="logo">
+    </button>
+  </div>
+</div>
+

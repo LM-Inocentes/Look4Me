@@ -33,14 +33,46 @@ const router = Router();
   router.get("/found", asyncHandler(
     async (req, res) =>{
         const items = await ItemModel.find({type: true});
-        res.send(items);                       //sending events from database
+        res.send(items);                       //sending items from database
     }
   ))
 
   router.get("/lost", asyncHandler(
     async (req, res) =>{
         const items = await ItemModel.find({type: false});
-        res.send(items);                       //sending events from database
+        res.send(items);                       //sending items from database
+    }
+  ))
+
+  router.get("/lost/search/:searchTerm", asyncHandler(
+    async (req, res) => {
+      const searchRegex = new RegExp(req.params.searchTerm, 'i');
+      const items = await ItemModel.find( {"$and": 
+      [{"$or": [
+        { name: { '$regex': searchRegex } },
+        { characteristic: { '$regex': searchRegex } },
+        { loc: { '$regex': searchRegex } },
+      ]
+      },
+      { type:false}
+    ] });
+      res.send(items);
+    }
+  ))
+
+  router.get("/found/search/:searchTerm", asyncHandler(
+    async (req, res) => {
+      const searchRegex = new RegExp(req.params.searchTerm, 'i');
+      const items = await ItemModel.find( {"$and": 
+      [{"$or": [
+        { name: { '$regex': searchRegex } },
+        { characteristic: { '$regex': searchRegex } },
+        { loc: { '$regex': searchRegex } },
+      ]
+      },
+      { type:true}
+    ] });
+      res.send(items);
     }
   ))
 

@@ -24,6 +24,8 @@ import { PostLostPageComponent } from './components/post-lost-page/post-lost-pag
 import { PostFoundPageComponent } from './components/post-found-page/post-found-page.component';
 import { FoundItemsPageComponent } from './components/found-items-page/found-items-page.component';
 import { LostItemsPageComponent } from './components/lost-items-page/lost-items-page.component';
+import { SearchComponent } from './components/search/search.component';
+import { Search2Component } from './components/search2/search2.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { LostItemsPageComponent } from './components/lost-items-page/lost-items-
     PostLostPageComponent,
     PostFoundPageComponent,
     FoundItemsPageComponent,
-    LostItemsPageComponent
+    LostItemsPageComponent,
+    SearchComponent,
+    Search2Component
   ],
   imports: [
     BrowserModule,

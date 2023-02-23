@@ -19,7 +19,7 @@ export class LostItemsPageComponent {
 
     activatedRoute.params.subscribe((params) => {
       if (params.searchTerm){
-        ItemsObservable = this.itemService.getFoundItemsBySearchTerm(params.searchTerm);
+        ItemsObservable = this.itemService.getLostItemsBySearchTerm(params.searchTerm);
       }
       else{
         ItemsObservable = itemService.getLostItems();
