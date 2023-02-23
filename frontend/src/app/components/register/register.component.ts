@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registerForm!:FormGroup;
   isSubmitted = false;
 
-  returnUrl = '/home';
+  returnUrl = '/found-items';
 
   constructor(
     private formBuilder: FormBuilder,

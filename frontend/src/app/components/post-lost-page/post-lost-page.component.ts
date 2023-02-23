@@ -22,7 +22,7 @@ export class PostLostPageComponent {
   user!:User;
   itemForm!:FormGroup;
   isSubmitted = false;
-  returnUrl = 'home';
+  returnUrl = 'lost-items';
   img!: File;
   imgName!: string;
 
