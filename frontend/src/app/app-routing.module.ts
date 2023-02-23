@@ -5,9 +5,11 @@ import { PostFoundPageComponent } from './components/post-found-page/post-found-
 import { PostLostPageComponent } from './components/post-lost-page/post-lost-page.component';
 import { FoundItemsPageComponent } from './components/found-items-page/found-items-page.component';
 import { LostItemsPageComponent } from './components/lost-items-page/lost-items-page.component';
+import { LostInfoPageComponent } from './components/lost-info-page/lost-info-page.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 
 
 const routes: Routes = [
@@ -20,6 +22,7 @@ const routes: Routes = [
   {path : 'lost-items',title: 'LOOK4ME:Lost',  component : LostItemsPageComponent},
   {path : 'found-items/:searchTerm',title: 'LOOK4ME:Found',  component : FoundItemsPageComponent},
   {path : 'lost-items/:searchTerm',title: 'LOOK4ME:Lost',  component : LostItemsPageComponent},
+  {path : 'lost-items/info/:itemID',title: 'LOOK4ME:LostInfo',  component : LostInfoPageComponent},
 ];
 
 @NgModule({

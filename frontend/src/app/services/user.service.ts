@@ -67,7 +67,7 @@ export class UserService {
   logout(){
     this.userSubject.next(new User());
     localStorage.removeItem(USER_KEY);
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/');
   }
 
   setUserToLocalStorage(user:User){

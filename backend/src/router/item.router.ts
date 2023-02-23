@@ -32,14 +32,14 @@ const router = Router();
 
   router.get("/found", asyncHandler(
     async (req, res) =>{
-        const items = await ItemModel.find({type: true});
+        const items = await ItemModel.find({type: true}).sort({date:-1});
         res.send(items);                       //sending items from database
     }
   ))
 
   router.get("/lost", asyncHandler(
     async (req, res) =>{
-        const items = await ItemModel.find({type: false});
+        const items = await ItemModel.find({type: false}).sort({date:-1});
         res.send(items);                       //sending items from database
     }
   ))
