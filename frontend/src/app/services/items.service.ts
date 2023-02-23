@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IItem } from '../shared/interfaces/IItem';
 import { Item } from '../shared/models/Item';
-import { GET_FOUND_ITEM_SEARCH_URL, GET_FOUND_ITEM_URL, GET_LOST_ITEM_SEARCH_URL, GET_LOST_ITEM_URL, POST_ITEM_URL, UPLOAD_ITEM_URL } from '../shared/constants/urls';
+import { GET_FOUND_ITEM_SEARCH_URL, GET_FOUND_ITEM_URL, GET_INFO_ITEM, GET_LOST_ITEM_SEARCH_URL, GET_LOST_ITEM_URL, POST_ITEM_URL, UPLOAD_ITEM_URL } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -59,10 +59,14 @@ export class ItemsService {
   }
 
   getFoundItemsBySearchTerm(searchTerm: string) {
-    return this.http.get<IItem[]>(GET_FOUND_ITEM_SEARCH_URL + searchTerm);
+    return this.http.get<Item[]>(GET_FOUND_ITEM_SEARCH_URL + searchTerm);
   }
 
   getLostItemsBySearchTerm(searchTerm: string) {
-    return this.http.get<IItem[]>(GET_LOST_ITEM_SEARCH_URL + searchTerm);
+    return this.http.get<Item[]>(GET_LOST_ITEM_SEARCH_URL + searchTerm);
+  }
+
+  getItemByID(id:string): Observable<Item>{
+    return this.http.get<Item>(GET_INFO_ITEM + id);
   }
 }

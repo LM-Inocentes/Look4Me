@@ -40,9 +40,16 @@ const router = Router();
   router.get("/lost", asyncHandler(
     async (req, res) =>{
         const items = await ItemModel.find({type: false}).sort({date:-1});
-        res.send(items);                       //sending items from database
+        res.send(items);                
     }
   ))
+
+  router.get("/info/:id", asyncHandler(
+    async (req, res) =>{
+      const item = await ItemModel.findOne({_id: req.params.id});
+      res.send(item);                       
+  }
+))
 
   router.get("/lost/search/:searchTerm", asyncHandler(
     async (req, res) => {

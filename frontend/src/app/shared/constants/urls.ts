@@ -17,3 +17,5 @@ export const GET_LOST_ITEM_URL = BASE_URL + '/api/items/lost';
 export const GET_FOUND_ITEM_SEARCH_URL = GET_FOUND_ITEM_URL + '/search/';
 
 export const GET_LOST_ITEM_SEARCH_URL = GET_LOST_ITEM_URL + '/search/';
+
+export const GET_INFO_ITEM = BASE_URL + '/api/items/info/';
