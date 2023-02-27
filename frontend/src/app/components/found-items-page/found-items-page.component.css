@@ -149,3 +149,6 @@ h2{
     margin-top: 60px;
 }
 
+.no-item:not(:first-child) {
+  display:none;
+}
