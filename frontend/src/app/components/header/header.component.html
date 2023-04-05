@@ -13,7 +13,7 @@
         <a routerLink="/login">Login</a>
       </li>
 
-      <li *ngIf="isAuth" class="menu-container">
+      <li *ngIf="!isAdmin&&isAuth" class="menu-container">
         <a>Profile</a>
         <div class="menu">
           <a >Profile</a>
@@ -22,6 +22,17 @@
           <a (click)="logout()" class="button">Logout</a>
         </div>
       </li>
+
+      <li *ngIf="isAdmin" class="menu-container">
+        <a>Admin</a>
+        <div class="menu">
+          <a >Admin</a>
+          <a class="button">Account Info</a>
+          <a class="button">Post History</a>
+          <a (click)="logout()" class="button">Logout</a>
+        </div>
+      </li>
+
     </ul>
   </div>
 </header>

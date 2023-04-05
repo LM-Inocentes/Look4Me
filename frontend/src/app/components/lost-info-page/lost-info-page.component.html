@@ -7,7 +7,7 @@
     <div class="skills">
       <h1>{{item.name}}</h1>
       <ul>
-        <li>Characteristic: {{item.characteristic}}</li> <a routerLink="">Item Found</a>
+        <li>Characteristic: {{item.characteristic}}</li>
         <li>Location Lost: {{item.loc}}</li>
         <li>Date Lost: {{item.date| date: 'MM/dd/yyyy'}}</li>
         <li>More Info: {{item.more_info}}</li>
@@ -33,10 +33,10 @@
     <div class="found">
       <button>Item Found</button>
     </div>
-    <div class="edit">
-      <button>Edit Post</button>
+    <div class="edit" *ngIf="isPoster">
+      <button routerLink="./edit-lost">Edit Post</button>
     </div>
-    <div class="delete">
+    <div class="delete" *ngIf="isAdmin">
       <button (click)="postDelete()">Delete Post</button>
     </div>
   </div>

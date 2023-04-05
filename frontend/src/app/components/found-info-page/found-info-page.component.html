@@ -33,10 +33,10 @@
     <div class="found">
       <button>Claim Item</button>
     </div>
-    <div class="edit" routerLink="./edit-found">
-      <button>Edit Post</button>
+    <div class="edit" *ngIf="isPoster">
+      <button routerLink="./edit-found">Edit Post</button>
     </div>
-    <div class="delete" >
+    <div class="delete" *ngIf="isAdmin">
       <button (click)="postDelete()">Delete Post</button>
     </div>
   </div>

@@ -26,7 +26,7 @@ const routes: Routes = [
   {path : 'lost-items/info/:itemID',title: 'LOOK4ME:LostInfo',  component : LostInfoPageComponent},
   {path : 'found-items/info/:itemID',title: 'LOOK4ME:FoundInfo',  component : FoundInfoPageComponent},
   {path : 'found-items/info/:itemID/edit-found',title: 'LOOK4ME:Edit',  component : EditFoundComponent},
-  {path : 'found-items/info/:itemID/edit-lost',title: 'LOOK4ME:Edit',  component : EditLostComponent},
+  {path : 'lost-items/info/:itemID/edit-lost',title: 'LOOK4ME:Edit',  component : EditLostComponent},
 ];
 
 @NgModule({

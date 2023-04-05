@@ -29,6 +29,12 @@ export class LostInfoPageComponent implements OnInit{
     })
   }
 
+  get isPoster(){
+    return (this.item.poster_email===this.user.email)||("admin@gmail.com"===this.user.email);
+  }
+  get isAdmin(){
+    return ("admin@gmail.com"===this.user.email);
+  }
   postDelete(){
     this.itemService.deleteItemByID(this.item.id)
     .subscribe(_ => this.router.navigateByUrl('/lost-items'));

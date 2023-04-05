@@ -114,7 +114,6 @@ const router = Router();
       if(more_info){
         await item!.updateOne({ $set: { "more_info": more_info } });
       }
-      console.log(item);
       res.send();                    
     }
   ))
@@ -138,7 +137,6 @@ const router = Router();
       if(more_info){
         await item!.updateOne({ $set: { "more_info": more_info } });
       }
-      console.log(item);
       res.send();                    
     }
   ))

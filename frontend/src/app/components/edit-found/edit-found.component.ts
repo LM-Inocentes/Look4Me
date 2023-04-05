@@ -53,7 +53,6 @@ export class EditFoundComponent implements OnInit {
   }
 
   submit(){
-    this.isSubmitted = true;
     this.returnUrl = this.returnUrl + this.item.id;
 
     const fv= this.itemForm.value;
