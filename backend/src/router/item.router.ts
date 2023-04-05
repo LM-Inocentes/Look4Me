@@ -92,12 +92,37 @@ const router = Router();
     }
   ))
 
-  router.patch("/info/edit1/:id", asyncHandler(
+  router.patch("/info/edit/:id", upload.single('image'), asyncHandler(
     async (req, res) =>{
-    //  const result = await cloudinary.uploader.upload(req.file?.path);
+      const result = await cloudinary.uploader.upload(req.file?.path);
       const {name, characteristic, loc, date, more_info} = req.body;
       const item = await ItemModel.findOne({_id: req.params.id});
+      await cloudinary.uploader.destroy(item?.imgName);
+      await item!.updateOne({ $set: { "imgName": result.public_id, "img": result.secure_url } });
+      if(name){
+        await item!.updateOne({ $set: { "name": name } });
+      }
+      if(characteristic){
+        await item!.updateOne({ $set: { "characteristic": characteristic } });
+      }
+      if(loc){
+        await item!.updateOne({ $set: { "loc": loc } });
+      }
+      if(date){
+        await item!.updateOne({ $set: { "date": date } });
+      }
+      if(more_info){
+        await item!.updateOne({ $set: { "more_info": more_info } });
+      }
       console.log(item);
+      res.send();                    
+    }
+  ))
+
+  router.patch("/info/edit1/:id", asyncHandler(
+    async (req, res) =>{
+      const {name, characteristic, loc, date, more_info} = req.body;
+      const item = await ItemModel.findOne({_id: req.params.id});
       if(name){
         await item!.updateOne({ $set: { "name": name } });
       }
