@@ -10,7 +10,7 @@
 
 <ul>
   <li *ngFor="let item of items">
-    <a routerLink="/lost-items/info/{{item.id}}">
+    <a routerLink="/found-items/info/{{item.id}}">
       <img [src]="item.img" [alt]="item.name" />
       <div class="content">
         <div class="name">
@@ -21,9 +21,7 @@
             <span>Characteristic: {{item.characteristic}}</span>
             <span>Location Found: {{item.loc}}</span>
             <span>Date Found: {{item.date | date: 'MM/dd/yyyy'}}</span>
-            <span>More Info: {{item.more_info}}</span>
-            <span *ngIf="!item.status">Status: Not Yet Retrieved</span>
-            <span *ngIf="item.status">Status: Item Retrieved</span>
+            <span [attr.status]="item.status" class="status">Status:</span>
           </div>
         </div>
       </div>
@@ -34,7 +32,14 @@
     <h3>No Results</h3>
     </div>
   </li>
+  <div class="found" *ngIf="isAuth">
+    <button routerLink="/post-found">Post Found Item</button>
+  </div>
+  <div class="found" *ngIf="!isAuth">
+    <button routerLink="/login">Post Found Item</button>
+  </div>
 </ul>
+
 
 
 

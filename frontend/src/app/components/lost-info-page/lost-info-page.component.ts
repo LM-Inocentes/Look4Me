@@ -28,4 +28,9 @@ export class LostInfoPageComponent implements OnInit{
       });
     })
   }
+
+  postDelete(){
+    this.itemService.deleteItemByID(this.item.id)
+    .subscribe(_ => this.router.navigateByUrl('/lost-items'));
+  }
 }

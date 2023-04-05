@@ -27,7 +27,7 @@ selectedFile!: ImageSnippet;
   imgName!: string;
 
 
-  constructor(private userService:UserService, private itemService:ItemsService ,private formBuilder:FormBuilder , private router:Router) {
+  constructor(userService:UserService, private itemService:ItemsService ,private formBuilder:FormBuilder , private router:Router) {
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
     });
@@ -55,17 +55,20 @@ selectedFile!: ImageSnippet;
     const fv= this.itemForm.value;
 
       const item :IItem = {
-        poster_email: this.user.email,
-        poster_contactinfo: this.user.contactinfo,
+
         type: true,
         name: fv.name,
-        img: "",
         characteristic: fv.characteristic,
         loc: fv.loc,
         date: fv.date,
         more_info: fv.more_info,
         status: false,
-        id: "",
+
+        poster_id: this.user.id,
+        poster_name: this.user.Fullname,
+        poster_email: this.user.email,
+        poster_contactinfo: this.user.contactinfo,
+
       };
 
     const reader = new FileReader();

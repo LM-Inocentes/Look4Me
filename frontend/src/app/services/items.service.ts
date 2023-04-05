@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { IItem } from '../shared/interfaces/IItem';
 import { Item } from '../shared/models/Item';
-import { GET_FOUND_ITEM_SEARCH_URL, GET_FOUND_ITEM_URL, GET_INFO_ITEM, GET_LOST_ITEM_SEARCH_URL, GET_LOST_ITEM_URL, POST_ITEM_URL, UPLOAD_ITEM_URL } from '../shared/constants/urls';
+import { DELETE_ITEM, EDIT_INFO_ITEM, EDIT_INFO_ITEM1, GET_FOUND_ITEM_SEARCH_URL, GET_FOUND_ITEM_URL, GET_INFO_ITEM, GET_LOST_ITEM_SEARCH_URL, GET_LOST_ITEM_URL, POST_ITEM_URL, UPLOAD_ITEM_URL } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
+import { IItem2 } from '../shared/interfaces/IItem2';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,13 @@ export class ItemsService {
     const formData = new FormData();
 
     formData.append('image', image);
+    formData.append('poster_id', item.poster_id);
+    formData.append('poster_name', item.poster_name);
     formData.append('poster_email', item.poster_email);
     formData.append('name', item.name);
     formData.append('poster_contactinfo', item.poster_contactinfo);
     formData.append('type', item.type.toString());
     formData.append('characteristic', item.characteristic);
-    formData.append('img', item.img);
     formData.append('loc', item.loc);
     formData.append('date', item.date);
     formData.append('status', item.status.toString());
@@ -51,6 +53,21 @@ export class ItemsService {
     );;
   }
 
+  editPost(ITEM:IItem2, id:string, image:any): Observable<Item>{
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('characteristic', ITEM.characteristic);
+    formData.append('name', ITEM.name);
+    formData.append('loc', ITEM.loc);
+    formData.append('date', ITEM.date);
+    formData.append('more_info', ITEM.more_info);
+    return this.http.patch<Item>(EDIT_INFO_ITEM + id, formData);
+  }
+
+  editPost1(ITEM:IItem2, id:string): Observable<Item>{
+    return this.http.patch<Item>(EDIT_INFO_ITEM1 + id, ITEM);
+  }
+
   getLostItems(): Observable<Item[]>{
     return this.http.get<Item[]>(GET_LOST_ITEM_URL);
   }
@@ -68,5 +85,21 @@ export class ItemsService {
 
   getItemByID(id:string): Observable<Item>{
     return this.http.get<Item>(GET_INFO_ITEM + id);
+  }
+
+  deleteItemByID(id:string){
+    return this.http.delete(DELETE_ITEM + id).pipe(
+      tap({
+        next: (id) => {
+            this.toastrService.success(
+              'Deleted Successfully'
+            )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Deletion Failed');
+        }
+
+      })
+    );;
   }
 }

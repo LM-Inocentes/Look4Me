@@ -8,7 +8,7 @@ ul{
 }
 
 li a{
-  height: 25.5rem;
+  height: 24.5rem;
   width: 20rem;
   border: 1px solid whitesmoke;
   border-radius: 1rem;
@@ -60,10 +60,11 @@ li a img{
   background-color: rgba(76, 216, 255);
   display: inline-block;
   font-size: 0.8rem;
-  color: rgb(10, 93, 121);
+  color: black;
   margin-right: 0.3rem;
   padding: 0 0.5rem;
   margin-top: 0.2rem;
+  font-weight: 100;
 }
 
 div{
@@ -139,7 +140,7 @@ h2{
 .logo-2 h3 {
     color: rgba(76, 216, 255);
     font-family: 'Oswald', sans-serif;
-    font-weight: 300;
+    font-weight: bolder;
     font-size: 25px;
     text-transform: uppercase;
     line-height:1;
@@ -147,8 +148,45 @@ h2{
     border-radius: 1rem;
     padding: 8px;
     margin-top: 60px;
+    margin-bottom: 60px;
 }
 
 .no-item:not(:first-child) {
   display:none;
+}
+
+.status[status=false]:after {
+  content : " Item Not Yet Retrieved";
+  color : rgb(12, 4, 155);
+  font-weight: bold;
+ }
+
+ .status[status=true]:after {
+  content : " Item Already Retrieved";
+  color : rgb(215, 22, 157);
+  font-weight: bold;
+ }
+
+ .found button{
+  font-family: Montserrat, sans-serif;
+  position: absolute;
+  top: 165px;
+  left: 51%;
+  transform: translate(-50%,-50%);
+  border: 1rem;
+  border-color: rgba(76, 216, 255);
+  border-width: thick;
+  outline: none;
+  height: 40px;
+  background: rgb(7, 16, 193);
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  border-radius: 6px;
+}
+
+.found button:hover{
+  cursor: pointer;
+  background: rgba(76, 216, 255);
+  color: rgb(0, 0, 0);
 }

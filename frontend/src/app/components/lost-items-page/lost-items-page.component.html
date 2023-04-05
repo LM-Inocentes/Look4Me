@@ -21,9 +21,7 @@
             <span>Characteristic: {{item.characteristic}}</span>
             <span>Location Lost: {{item.loc}}</span>
             <span>Date Lost: {{item.date | date: 'MM/dd/yyyy'}}</span>
-            <span>More Info: {{item.more_info}}</span>
-            <span *ngIf="!item.status">Status: Not Yet Found</span>
-            <span *ngIf="item.status">Status: Item Found</span>
+            <span [attr.status]="item.status" class="status">Status:</span>
           </div>
         </div>
       </div>
@@ -34,4 +32,10 @@
     <h3>No Results</h3>
     </div>
   </li>
+  <div class="found" *ngIf="isAuth">
+    <button routerLink="/post-lost">Post Lost Item</button>
+  </div>
+  <div class="found" *ngIf="!isAuth">
+    <button routerLink="/login">Post Lost Item</button>
+  </div>
 </ul>

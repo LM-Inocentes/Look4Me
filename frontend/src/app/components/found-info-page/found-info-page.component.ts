@@ -25,8 +25,16 @@ export class FoundInfoPageComponent {
     this.activatedRoute.params.subscribe((params) => {
         this.itemService.getItemByID(params.itemID).subscribe(serverItem => {
         this.item = serverItem;
-        console.log(this.item);
       });
     })
+  }
+
+  postDelete(){
+    this.itemService.deleteItemByID(this.item.id)
+    .subscribe(_ => this.router.navigateByUrl('/found-items'));
+  }
+
+  itemFound(){
+
   }
 }

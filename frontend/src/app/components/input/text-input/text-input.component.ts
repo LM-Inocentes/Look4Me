@@ -16,6 +16,8 @@ label!: string;
 @Input()
 placeholder!: string;
 @Input()
+onblur!: Date;
+@Input()
 type: 'text' | 'password' | 'date' |'email' = 'text' ;
 
 get formControl(){

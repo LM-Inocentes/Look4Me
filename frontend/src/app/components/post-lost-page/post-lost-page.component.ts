@@ -54,19 +54,22 @@ export class PostLostPageComponent {
 
     const fv= this.itemForm.value;
 
-      const item :IItem = {
-        poster_email: this.user.email,
-        poster_contactinfo: this.user.contactinfo,
-        type: false,
-        name: fv.name,
-        img: "",
-        characteristic: fv.characteristic,
-        loc: fv.loc,
-        date: fv.date,
-        more_info: fv.more_info,
-        status: false,
-        id: "",
-      };
+    const item :IItem = {
+
+      type: false,
+      name: fv.name,
+      characteristic: fv.characteristic,
+      loc: fv.loc,
+      date: fv.date,
+      more_info: fv.more_info,
+      status: false,
+
+      poster_id: this.user.id,
+      poster_name: this.user.Fullname,
+      poster_email: this.user.email,
+      poster_contactinfo: this.user.contactinfo,
+
+    };
 
     const reader = new FileReader();
 

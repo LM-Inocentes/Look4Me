@@ -2,30 +2,48 @@ import { Schema, model } from 'mongoose';
 
 export interface IItem{
     id: string;
-    poster_email: string;
-    poster_contactinfo: string;
     type: boolean;
     name: string;
     img: string;
+    imgName: string;
     characteristic: string;
     loc: string;
     date: string;
     more_info: string;
     status: boolean;
+
+    poster_id: string;
+    poster_email: string;
+    poster_name: string;
+    poster_contactinfo: string;
+
+    retriever_id: string;
+    retriever_email: string;
+    retriever_name: string;
+    retriever_contactinfo: string;
 }
 
 export const ItemSchema = new Schema<IItem>(
     {
-        poster_contactinfo: { type:String, required:true },
-        poster_email: { type:String, required:true },
         type: { type:Boolean, required:true },
         name: { type:String, required:true },
         img: { type:String, required:true },
+        imgName: { type:String, required:true },
         characteristic: { type:String, required:true},
         loc: { type:String, required:true },
         date: { type:String, required:true },
         more_info: { type:String, required:true },
         status: { type:Boolean, required:true },
+
+        poster_id: { type:String, required:true },
+        poster_email: { type:String, required:true },
+        poster_name: { type:String, required:true },
+        poster_contactinfo: { type:String, required:true },
+
+        retriever_id: { type:String, required:false },
+        retriever_email: { type:String, required:false },
+        retriever_name: { type:String, required:false },
+        retriever_contactinfo: { type:String, required:false },
     },{
         toJSON:{
             virtuals:true

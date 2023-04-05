@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ItemsService } from 'src/app/services/items.service';
+import { UserService } from 'src/app/services/user.service';
 import { Item } from 'src/app/shared/models/Item';
+import { User } from 'src/app/shared/models/User';
 
 
 
@@ -13,11 +15,14 @@ import { Item } from 'src/app/shared/models/Item';
 })
 export class FoundItemsPageComponent{
 
-
+  user!:User;
   items: Item[] = [];
 
-  constructor(private itemService:ItemsService, activatedRoute: ActivatedRoute) {
+  constructor(private itemService:ItemsService, activatedRoute: ActivatedRoute, userService: UserService) {
     let ItemsObservable: Observable<Item[]>;
+    userService.userObservable.subscribe((newUser) => {
+      this.user = newUser;
+    });
 
     activatedRoute.params.subscribe((params) => {
       if (params.searchTerm){
@@ -30,5 +35,9 @@ export class FoundItemsPageComponent{
       this.items = serverItems;
     })
   })
+  }
+
+  get isAuth(){
+    return this.user.token;
   }
 }

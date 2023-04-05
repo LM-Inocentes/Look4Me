@@ -5,28 +5,8 @@
   <div class="nav">
     <ul>
       <li class="menu-container">
-        <a>View</a>
-        <div class="menu">
-          <a >View</a>
-          <a class="button" routerLink="/lost-items">Lost Items</a>
-          <a class="button" routerLink="/found-items">Found Items</a>
-        </div>
-      </li>
-
-      <li class="menu-container">
-        <a>Post</a>
-        <div class="menu">
-          <span *ngIf="!isAuth" >
-            <a >Post</a>
-            <a routerLink="/login" class="button">Lost Item</a>
-            <a routerLink="/login" class="button">Found Item</a>
-          </span>
-          <span *ngIf="isAuth">
-            <a >Post</a>
-            <a routerLink="/post-lost" class="button">Lost Item</a>
-            <a routerLink="/post-found" class="button">Found Item</a>
-          </span>
-        </div>
+        <a class="button" routerLink="/lost-items">Lost Items</a>
+        <a class="button" routerLink="/found-items">Found Items</a>
       </li>
 
       <li *ngIf="!isAuth">

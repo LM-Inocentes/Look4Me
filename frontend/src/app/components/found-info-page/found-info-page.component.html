@@ -1,35 +1,47 @@
+<app-header></app-header>
+<body>
+  <div  class="container">
 
-<div  class="container">
+    <img [src]="item.img" [alt]="item.name"/>
 
-  <img [src]="item.img" [alt]="item.name"/>
-
-  <div class="details">
-    <div class="header">
-      <span class="name">
-        {{item.name}}
-      </span>
+    <div class="skills">
+      <h1>{{item.name}}</h1>
+      <ul>
+        <li>Characteristic: {{item.characteristic}}</li>
+        <li>Location Found: {{item.loc}}</li>
+        <li>Date Found: {{item.date| date: 'MM/dd/yyyy'}}</li>
+        <li>More Info: {{item.more_info}}</li>
+        <li [attr.status]="item.status" class="status">Status:</li>
+      </ul>
+      <div>
+        <h1 >Poster Info</h1>
+        <ul>
+          <li>Name: {{item.poster_name}}</li>
+          <li>Email: {{item.poster_email}}</li>
+          <li>Contact Info: {{item.poster_contactinfo}}</li>
+        </ul>
+      </div>
+      <div>
+        <h1>Retriever Info</h1>
+        <ul>
+          <li>Name: {{item.poster_name}}</li>
+          <li>Email: {{item.poster_email}}</li>
+          <li>Contact Info: {{item.poster_contactinfo}}</li>
+        </ul>
+      </div>
     </div>
-
-
-    <div class="about">
-      <span>
-        <strong>{{item.more_info}}</strong>
-      </span>
+    <div class="found">
+      <button>Claim Item</button>
     </div>
-
-    <div class="origins">
-      <span>
-        Location: {{item.loc}}
-      </span>
-      <span>
-        Date: {{item.date}}
-      </span>
-
+    <div class="edit" routerLink="./edit-found">
+      <button>Edit Post</button>
+    </div>
+    <div class="delete" >
+      <button (click)="postDelete()">Delete Post</button>
     </div>
   </div>
 
-</div>
-
+</body>
 
 
 

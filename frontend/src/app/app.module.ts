@@ -26,6 +26,8 @@ import { FoundItemsPageComponent } from './components/found-items-page/found-ite
 import { LostItemsPageComponent } from './components/lost-items-page/lost-items-page.component';
 import { SearchComponent } from './components/search/search.component';
 import { Search2Component } from './components/search2/search2.component';
+import { EditFoundComponent } from './components/edit-found/edit-found.component';
+import { EditLostComponent } from './components/edit-lost/edit-lost.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { Search2Component } from './components/search2/search2.component';
     FoundItemsPageComponent,
     LostItemsPageComponent,
     SearchComponent,
-    Search2Component
+    Search2Component,
+    EditFoundComponent,
+    EditLostComponent
   ],
   imports: [
     BrowserModule,
