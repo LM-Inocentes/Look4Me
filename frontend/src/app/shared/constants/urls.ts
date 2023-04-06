@@ -10,6 +10,8 @@ export const UPLOAD_ITEM_URL = BASE_URL + '/api/items/upload';
 
 export const POST_ITEM_URL = BASE_URL + '/api/items/post';
 
+export const CLAIM_ITEM_URL = BASE_URL + '/api/items/claim/';
+
 export const GET_FOUND_ITEM_URL = BASE_URL + '/api/items/found';
 
 export const GET_LOST_ITEM_URL = BASE_URL + '/api/items/lost';

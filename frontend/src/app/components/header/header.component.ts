@@ -9,10 +9,13 @@ import { User } from 'src/app/shared/models/User';
 })
 export class HeaderComponent implements OnInit {
   user!:User;
+  Firstname?:string;
+
 
   constructor(private userService:UserService) {
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
+      this.Firstname = this.user.Fullname.split(' ').at(0);
     });
    }
 

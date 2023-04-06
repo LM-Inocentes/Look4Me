@@ -14,11 +14,10 @@
       </li>
 
       <li *ngIf="!isAdmin&&isAuth" class="menu-container">
-        <a>Profile</a>
+        <a>{{Firstname}}</a>
         <div class="menu">
-          <a >Profile</a>
+          <a >{{Firstname}}</a>
           <a class="button">Account Info</a>
-          <a class="button">Post History</a>
           <a (click)="logout()" class="button">Logout</a>
         </div>
       </li>
@@ -28,7 +27,6 @@
         <div class="menu">
           <a >Admin</a>
           <a class="button">Account Info</a>
-          <a class="button">Post History</a>
           <a (click)="logout()" class="button">Logout</a>
         </div>
       </li>

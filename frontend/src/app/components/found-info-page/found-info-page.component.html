@@ -15,23 +15,35 @@
       </ul>
       <div>
         <h1 >Poster Info</h1>
-        <ul>
+        <ul *ngIf="isPoster||accessClaim;else other_content">
           <li>Name: {{item.poster_name}}</li>
           <li>Email: {{item.poster_email}}</li>
           <li>Contact Info: {{item.poster_contactinfo}}</li>
         </ul>
+        <ng-template #other_content>
+          <ul *ngIf="!isAuth;else other_content2">Please Login to Claim Item and Display Poster Info</ul>
+        </ng-template>
+        <ng-template #other_content2>
+          <ul *ngIf="!alreadyClaimed;else other_content3">Claim Item to Show Poster Information</ul>
+        </ng-template>
+        <ng-template #other_content3>
+          <ul>Retrieving Item in Progress. Can't Claim and Show Poster Info at the Moment</ul>
+        </ng-template>
       </div>
       <div>
         <h1>Retriever Info</h1>
-        <ul>
-          <li>Name: {{item.poster_name}}</li>
-          <li>Email: {{item.poster_email}}</li>
-          <li>Contact Info: {{item.poster_contactinfo}}</li>
+        <ul *ngIf="item.status;else other_content4">
+          <li>Name: {{item.retriever_name}}</li>
+          <li>Email: {{item.retriever_email}}</li>
+          <li>Contact Info: {{item.retriever_contactinfo}}</li>
         </ul>
+        <ng-template #other_content4>
+          <ul *ngIf="!isAuth;else other_content2">Item Not Yet Retrieved</ul>
+        </ng-template>
       </div>
     </div>
     <div class="found">
-      <button>Claim Item</button>
+      <button (click)="isClaimed()" *ngIf="!alreadyClaimed&&isAuth&&!isPoster">Claim Item</button>
     </div>
     <div class="edit" *ngIf="isPoster">
       <button routerLink="./edit-found">Edit Post</button>

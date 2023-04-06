@@ -43,6 +43,9 @@ h1{
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+  color: rgb(255, 43, 6);
+  font-weight: bold;
+  text-align: center;
 }
 
 .skills ul a{

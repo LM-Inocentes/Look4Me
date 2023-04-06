@@ -141,6 +141,15 @@ const router = Router();
     }
   ))
 
+  router.patch("/claim/:id/", asyncHandler(
+    async (req, res) =>{
+      const {id} = req.body;
+      const item = await ItemModel.findOne({_id: req.params.id});
+      await item!.updateOne({ $set: { "retriever_id": id } });
+      res.send();                    
+    }
+  ))
+
   router.delete("/delete-item/:id", asyncHandler(
     async (req, res) => {
       const ITEM = await ItemModel.findOne({ _id: req.params.id });

@@ -28,12 +28,28 @@ export class LostInfoPageComponent implements OnInit{
       });
     })
   }
-
   get isPoster(){
     return (this.item.poster_email===this.user.email)||("admin@gmail.com"===this.user.email);
   }
   get isAdmin(){
     return ("admin@gmail.com"===this.user.email);
+  }
+  get isAuth(){
+    return this.user.token;
+  }
+  isClaimed(){
+    this.itemService.claimPost(this.item.id, this.user)
+    .subscribe(_ => this.router.navigateByUrl('/found-items/info/'+this.item.id));
+    window.location.reload();
+  }
+  get alreadyClaimed(){
+    return this.item.retriever_id;
+  }
+  get accessAdmin(){
+    return ("admin@gmail.com"===this.user.email);
+  }
+  get accessClaim(){
+    return (this.item.retriever_id===this.user.id);
   }
   postDelete(){
     this.itemService.deleteItemByID(this.item.id)
