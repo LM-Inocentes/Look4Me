@@ -28,6 +28,7 @@ import { SearchComponent } from './components/search/search.component';
 import { Search2Component } from './components/search2/search2.component';
 import { EditFoundComponent } from './components/edit-found/edit-found.component';
 import { EditLostComponent } from './components/edit-lost/edit-lost.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { EditLostComponent } from './components/edit-lost/edit-lost.component';
     SearchComponent,
     Search2Component,
     EditFoundComponent,
-    EditLostComponent
+    EditLostComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
