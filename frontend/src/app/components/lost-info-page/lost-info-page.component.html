@@ -8,8 +8,8 @@
       <h2>{{item.name}}</h2>
       <ul>
         <li>Characteristic: {{item.characteristic}}</li>
-        <li>Location Found: {{item.loc}}</li>
-        <li>Date Found: {{item.date| date: 'MM/dd/yyyy'}}</li>
+        <li>Location Lost: {{item.loc}}</li>
+        <li>Date Lost: {{item.date| date: 'MM/dd/yyyy'}}</li>
         <li>More Info: {{item.more_info}}</li>
         <li [attr.status]="item.status" class="status">Status:</li>
       </ul>
@@ -21,13 +21,13 @@
           <li>Contact Info: {{item.poster_contactinfo}}</li>
         </ul>
         <ng-template #other_content>
-          <ul *ngIf="!isAuth;else other_content2">Please Login to Claim Item and Display Poster Info</ul>
+          <ul *ngIf="!isAuth;else other_content2">Please Login to Return Item and Display Poster Info</ul>
         </ng-template>
         <ng-template #other_content2>
-          <ul *ngIf="!alreadyClaimed;else other_content3">Claim Item to Show Poster Information</ul>
+          <ul *ngIf="!alreadyClaimed;else other_content3">Return Item to Show Poster Information</ul>
         </ng-template>
         <ng-template #other_content3>
-          <ul>Retrieving Item in Progress. Can't Claim and Show Poster Info at the Moment</ul>
+          <ul>Returning Item in Progress. Can't Return and Show Poster Info at the Moment</ul>
         </ng-template>
       </div>
       <div>
@@ -38,12 +38,12 @@
           <li>Contact Info: {{item.retriever_contactinfo}}</li>
         </ul>
         <ng-template #other_content4>
-          <ul>Item Not Yet Retrieved</ul>
+          <ul>Item Not Yet Found</ul>
         </ng-template>
       </div>
     </div>
     <div class="found">
-      <button (click)="isClaimed()" *ngIf="!alreadyClaimed&&isAuth&&!isPoster">Claim Item</button>
+      <button (click)="isClaimed()" *ngIf="!alreadyClaimed&&isAuth&&!isPoster">Return Item</button>
     </div>
     <div class="edit" *ngIf="isPoster">
       <button routerLink="./edit-lost">Edit Post</button>
