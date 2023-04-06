@@ -89,19 +89,7 @@ export class ItemsService {
   }
 
   claimPost(itemID:string, user:User): Observable<Item>{
-    return this.http.patch<Item>(CLAIM_ITEM_URL+itemID, user).pipe(
-      tap({
-        next: (user) => {
-            this.toastrService.success(
-              'Poster Notified'
-            )
-        },
-        error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'An error has occured');
-        }
-
-      })
-    );;
+    return this.http.patch<Item>(CLAIM_ITEM_URL+itemID, user);
   }
 
   deleteItemByID(id:string){

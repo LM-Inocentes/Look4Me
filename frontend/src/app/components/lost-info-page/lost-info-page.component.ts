@@ -40,7 +40,7 @@ export class LostInfoPageComponent implements OnInit{
   }
   isClaimed(){
     this.itemService.claimPost(this.item.id, this.user)
-    .subscribe(_ => this.router.navigateByUrl('/found-items/info/'+this.item.id));
+    .subscribe(_ => this.router.navigateByUrl('/lost-items/info/'+this.item.id));
     window.location.reload();
   }
   get alreadyClaimed(){
