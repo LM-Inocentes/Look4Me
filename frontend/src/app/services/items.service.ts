@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { IItem } from '../shared/interfaces/IItem';
 import { Item } from '../shared/models/Item';
-import { CLAIM_ITEM_URL, DELETE_ITEM, EDIT_INFO_ITEM, EDIT_INFO_ITEM1, GET_FOUND_ITEM_SEARCH_URL, GET_FOUND_ITEM_URL, GET_INFO_ITEM, GET_LOST_ITEM_SEARCH_URL, GET_LOST_ITEM_URL, POST_ITEM_URL, UPLOAD_ITEM_URL } from '../shared/constants/urls';
+import { CLAIM_ITEM_URL, DELETE_ITEM, EDIT_INFO_ITEM, EDIT_INFO_ITEM1, GET_FOUND_ITEM_SEARCH_URL, GET_FOUND_ITEM_URL, GET_INFO_ITEM, GET_LOST_ITEM_SEARCH_URL, GET_LOST_ITEM_URL, GET_USER_POSTS, GET_USER_REQUESTS, POST_ITEM_URL, UPLOAD_ITEM_URL } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
 import { IItem2 } from '../shared/interfaces/IItem2';
 import { User } from '../shared/models/User';
@@ -86,6 +86,14 @@ export class ItemsService {
 
   getItemByID(id:string): Observable<Item>{
     return this.http.get<Item>(GET_INFO_ITEM + id);
+  }
+
+  getUserPosts(email:string): Observable<Item[]>{
+    return this.http.get<Item[]>(GET_USER_POSTS + email);
+  }
+
+  getUserRequests(id:string): Observable<Item[]>{
+    return this.http.get<Item[]>(GET_USER_REQUESTS + id);
   }
 
   claimPost(itemID:string, user:User): Observable<Item>{

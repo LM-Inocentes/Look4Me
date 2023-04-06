@@ -17,7 +17,7 @@
         <a>{{Firstname}}</a>
         <div class="menu">
           <a >{{Firstname}}</a>
-          <a class="button">Account Info</a>
+          <a class="button" routerLink="/profile/{{user.id}}">Account Info</a>
           <a (click)="logout()" class="button">Logout</a>
         </div>
       </li>

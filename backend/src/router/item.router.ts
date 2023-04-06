@@ -4,6 +4,7 @@ const upload = require("../configs/multer.config");
 import { Router } from 'express';
 import  asyncHandler  from 'express-async-handler';
 import { IItem, ItemModel } from '../models/item.model';
+import { UserModel } from '../models/user.model';
 
 
 const router = Router();
@@ -58,7 +59,21 @@ const router = Router();
       const item = await ItemModel.findOne({_id: req.params.id});
       res.send(item);                       
   }
-))
+  ))
+
+  router.get("/user/posts/:email", asyncHandler(
+    async (req, res) =>{
+      const item = await ItemModel.find({poster_email: req.params.email});
+      res.send(item);                       
+  }
+  ))
+
+  router.get("/user/requests/:id", asyncHandler(
+    async (req, res) =>{
+      const item = await ItemModel.find({retriever_id: req.params.id});
+      res.send(item);                       
+  }
+  ))
 
   router.get("/lost/search/:searchTerm", asyncHandler(
     async (req, res) => {
@@ -145,7 +160,8 @@ const router = Router();
     async (req, res) =>{
       const {id} = req.body;
       const item = await ItemModel.findOne({_id: req.params.id});
-      await item!.updateOne({ $set: { "retriever_id": id } });
+      const user = await UserModel.findOne({_id: id});
+      await item!.updateOne({ $set: { "retriever_id": id, "retriever_name": user?.Fullname, "retriever_email": user?.email, "retriever_contactinfo": user?.contactinfo } });
       res.send();                    
     }
   ))

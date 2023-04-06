@@ -22,6 +22,10 @@ export const GET_LOST_ITEM_SEARCH_URL = GET_LOST_ITEM_URL + '/search/';
 
 export const GET_INFO_ITEM = BASE_URL + '/api/items/info/';
 
+export const GET_USER_POSTS = BASE_URL + '/api/items/user/posts/';
+
+export const GET_USER_REQUESTS = BASE_URL + '/api/items/user/requests/';
+
 export const EDIT_INFO_ITEM = BASE_URL + '/api/items/info/edit/';
 
 export const EDIT_INFO_ITEM1 = BASE_URL + '/api/items/info/edit1/';

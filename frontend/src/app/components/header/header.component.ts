@@ -14,8 +14,10 @@ export class HeaderComponent implements OnInit {
 
   constructor(private userService:UserService) {
     userService.userObservable.subscribe((newUser) => {
-      this.user = newUser;
-      this.Firstname = this.user.Fullname.split(' ').at(0);
+        this.user = newUser;
+        if(this.isAuth){
+          this.Firstname = this.user.Fullname.split(' ').at(0);
+        }
     });
    }
 

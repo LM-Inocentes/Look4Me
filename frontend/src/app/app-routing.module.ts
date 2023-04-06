@@ -9,6 +9,7 @@ import { LostInfoPageComponent } from './components/lost-info-page/lost-info-pag
 import { FoundInfoPageComponent } from './components/found-info-page/found-info-page.component';
 import { EditFoundComponent } from './components/edit-found/edit-found.component';
 import { EditLostComponent } from './components/edit-lost/edit-lost.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path : 'found-items/info/:itemID',title: 'LOOK4ME:FoundInfo',  component : FoundInfoPageComponent},
   {path : 'found-items/info/:itemID/edit-found',title: 'LOOK4ME:Edit',  component : EditFoundComponent},
   {path : 'lost-items/info/:itemID/edit-lost',title: 'LOOK4ME:Edit',  component : EditLostComponent},
+  {path : 'profile/:id',title: 'LOOK4ME:Profile',  component : ProfilePageComponent},
 ];
 
 @NgModule({
