@@ -19,4 +19,11 @@ export class Item{
   retriever_email!: string;
   retriever_name!: string;
   retriever_contactinfo!: string;
+  retriever_date!: string;
+
+  returned_id!: string;
+  returned_email!: string;
+  returned_name!: string;
+  returned_contactinfo!: string;
+  returned_date!: string;
 }

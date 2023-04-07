@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { IItem } from '../shared/interfaces/IItem';
 import { Item } from '../shared/models/Item';
-import { CLAIM_ITEM_URL, DELETE_ITEM, EDIT_INFO_ITEM, EDIT_INFO_ITEM1, GET_FOUND_ITEM_SEARCH_URL, GET_FOUND_ITEM_URL, GET_INFO_ITEM, GET_LOST_ITEM_SEARCH_URL, GET_LOST_ITEM_URL, GET_USER_POSTS, GET_USER_REQUESTS, POST_ITEM_URL, UPLOAD_ITEM_URL } from '../shared/constants/urls';
+import { APPROVE_URL, CHANGE_URL, CLAIM_ITEM_URL, DELETE_ITEM, DENY_URL, EDIT_INFO_ITEM, EDIT_INFO_ITEM1, GET_FOUND_ITEM_SEARCH_URL, GET_FOUND_ITEM_URL, GET_INFO_ITEM, GET_LOST_ITEM_SEARCH_URL, GET_LOST_ITEM_URL, GET_USER_POSTS, GET_USER_REQUESTS, POST_ITEM_URL, UPLOAD_ITEM_URL } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
 import { IItem2 } from '../shared/interfaces/IItem2';
 import { User } from '../shared/models/User';
@@ -62,11 +62,33 @@ export class ItemsService {
     formData.append('loc', ITEM.loc);
     formData.append('date', ITEM.date);
     formData.append('more_info', ITEM.more_info);
-    return this.http.patch<Item>(EDIT_INFO_ITEM + id, formData);
+    return this.http.patch<Item>(EDIT_INFO_ITEM + id, formData).pipe(
+      tap({
+        next: (item) => {
+            this.toastrService.success(
+              'Edit Successful'
+            )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Command Unsuccessful');
+        }
+      })
+    );;
   }
 
   editPost1(ITEM:IItem2, id:string): Observable<Item>{
-    return this.http.patch<Item>(EDIT_INFO_ITEM1 + id, ITEM);
+    return this.http.patch<Item>(EDIT_INFO_ITEM1 + id, ITEM).pipe(
+      tap({
+        next: (item) => {
+            this.toastrService.success(
+              'Edit Successful'
+            )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Command Unsuccessful');
+        }
+      })
+    );;
   }
 
   getLostItems(): Observable<Item[]>{
@@ -88,8 +110,8 @@ export class ItemsService {
     return this.http.get<Item>(GET_INFO_ITEM + id);
   }
 
-  getUserPosts(email:string): Observable<Item[]>{
-    return this.http.get<Item[]>(GET_USER_POSTS + email);
+  getUserPosts(id:string): Observable<Item[]>{
+    return this.http.get<Item[]>(GET_USER_POSTS + id);
   }
 
   getUserRequests(id:string): Observable<Item[]>{
@@ -97,7 +119,66 @@ export class ItemsService {
   }
 
   claimPost(itemID:string, user:User): Observable<Item>{
-    return this.http.patch<Item>(CLAIM_ITEM_URL+itemID, user);
+    return this.http.patch<Item>(CLAIM_ITEM_URL+itemID, user).pipe(
+      tap({
+        next: (item) => {
+            this.toastrService.success(
+              'Poster Notified'
+            )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Command Unsuccessful');
+        }
+      })
+    );;
+  }
+
+  Approve(item:Item): Observable<Item>{
+    return this.http.patch<Item>(APPROVE_URL, item).pipe(
+      tap({
+        next: (item) => {
+          this.toastrService.success(
+            `Status Change`,
+            'Request Approved'
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Command Unsuccessful');
+        }
+      })
+    );;
+  }
+
+  Deny(item:Item): Observable<Item>{
+    return this.http.patch<Item>(DENY_URL, item).pipe(
+      tap({
+        next: (item) => {
+          this.toastrService.success(
+            `Status Unchanged`,
+            'Request Rejected'
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Command Unsuccessful');
+        }
+      })
+    );;
+  }
+
+  Change(item:Item): Observable<Item>{
+    return this.http.patch<Item>(CHANGE_URL, item).pipe(
+      tap({
+        next: (item) => {
+          this.toastrService.success(
+            `Status Changed`,
+            'Owner/Finder Changed'
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Command Unsuccessful');
+        }
+      })
+    );;
   }
 
   deleteItemByID(id:string){

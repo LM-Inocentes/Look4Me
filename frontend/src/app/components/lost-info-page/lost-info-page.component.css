@@ -9,7 +9,6 @@
   box-sizing: border-box;
   transform: translate(-50%,-50%);
   display: flex;
-  justify-content: center;
   border-radius: 1rem;
   background: rgb(2, 54, 71);
   width: 43rem;
@@ -53,7 +52,6 @@ h2{
 	padding: 0;
   color: rgb(255, 43, 6);
   font-weight: bold;
-  text-align: center;
 }
 
 .skills ul a{

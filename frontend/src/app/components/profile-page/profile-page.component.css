@@ -68,7 +68,7 @@ h2 {
     font-size: 25px;
     text-transform: uppercase;
     line-height:1;
-
+    text-align: center;
     padding: 8px;
     margin-bottom: 40px;
 }
@@ -90,14 +90,14 @@ button:active {
 }
 
 button {
-  padding: 6px 14px;
+  padding: 3px 7px;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   border-radius: 6px;
   border: none;
   margin: 1px;
   background: linear-gradient(180deg, rgb(146, 91, 209) 0%, #367AF6 100%);
    background-origin: border-box;
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0.5px 1.5px rgba(54, 208, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -105,7 +105,7 @@ button {
 }
 
 .button-10:focus {
-  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(8, 224, 244, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
 

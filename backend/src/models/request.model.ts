@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-export interface IItem{
+export interface IRequest{
     id: string;
     type: boolean;
     name: string;
@@ -16,21 +16,16 @@ export interface IItem{
     poster_email: string;
     poster_name: string;
     poster_contactinfo: string;
+    poster_date: string;
 
-    retriever_id: string;
-    retriever_email: string;
-    retriever_name: string;
-    retriever_contactinfo: string;
-    retriever_date: string;
-
-    returned_id: string;
-    returned_email: string;
-    returned_name: string;
-    returned_contactinfo: string;
-    returned_date: string;
+    request_id: string;
+    request_email: string;
+    request_name: string;
+    request_contactinfo: string;
+    request_date: string;
 }
 
-export const ItemSchema = new Schema<IItem>(
+export const RequestSchema = new Schema<IRequest>(
     {
         type: { type:Boolean, required:true },
         name: { type:String, required:true },
@@ -47,17 +42,10 @@ export const ItemSchema = new Schema<IItem>(
         poster_name: { type:String, required:true },
         poster_contactinfo: { type:String, required:true },
 
-        retriever_id: { type:String, required:false },
-        retriever_email: { type:String, required:false },
-        retriever_name: { type:String, required:false },
-        retriever_contactinfo: { type:String, required:false },
-        retriever_date: { type:String, required:false },
-
-        returned_id: { type:String, required:false },
-        returned_email: { type:String, required:false },
-        returned_name: { type:String, required:false },
-        returned_contactinfo: { type:String, required:false },
-        returned_date: { type:String, required:false },
+        request_id: { type:String, required:false },
+        request_email: { type:String, required:false },
+        request_name: { type:String, required:false },
+        request_contactinfo: { type:String, required:false },
     },{
         toJSON:{
             virtuals:true
@@ -69,4 +57,4 @@ export const ItemSchema = new Schema<IItem>(
     }
 )
 
-export const ItemModel = model<IItem>('items', ItemSchema);
+export const RequestModel = model<IRequest>('request', RequestSchema);

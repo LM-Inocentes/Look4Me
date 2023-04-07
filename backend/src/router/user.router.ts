@@ -69,11 +69,33 @@ router.get("/:email", asyncHandler(
   }
 ))
 
+router.patch("/edit/:id", asyncHandler(
+  async (req, res) =>{
+    const {Fullname, email, contactinfo, password} = req.body;
+    const editUser = await UserModel.findOne({_id: req.params.id});
+    const user = await UserModel.findOne({ _id: { $ne: req.params.id }, email: email });
+      if(user){
+        res.status(400)
+        .send('User email already exist!');
+        return;
+      }
+
+    if(password){
+      const salt = await bcrypt.genSalt(10); 
+      const newPassword = await bcrypt.hash(password, salt);
+      await editUser!.updateOne({ $set: { "Fullname": Fullname, "email": email, "contactinfo": contactinfo, "password": newPassword } });
+    }
+    else{
+      await editUser!.updateOne({ $set: { "Fullname": Fullname, "email": email, "contactinfo": contactinfo } });
+    }
+    res.send(editUser);                  
+  }
+))
 
 
 const generateTokenResponse = (user:any) => {
     const token = jwt.sign({
-        id: user.id, email:user.email
+        id: user.id
     },"Some Text",{
         expiresIn: "30d"
     })

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
+import { USER_EDIT_URL, USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { IUserRegister } from '../shared/interfaces/IUserRegister';
 import { User } from '../shared/models/User';
@@ -21,6 +21,7 @@ export class UserService {
   constructor(private http:HttpClient, private toastrService: ToastrService, private router: Router) {
     this.userObservable = this.userSubject.asObservable();
   }
+
 
   public get currentUser():User{
     return this.userSubject.value;
@@ -63,6 +64,26 @@ export class UserService {
       })
     );
   }
+
+  Edit(userEdit:IUserRegister, id:string): Observable<User>{
+
+    return this.http.patch<User>(USER_EDIT_URL+id, userEdit).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+          this.toastrService.success(
+            `Edit Successful`,
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Edit Failed');
+        }
+
+      })
+    );
+  }
+
 
   logout(){
     this.userSubject.next(new User());

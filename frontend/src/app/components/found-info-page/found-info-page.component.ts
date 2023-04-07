@@ -41,8 +41,10 @@ export class FoundInfoPageComponent {
   }
   isClaimed(){
     this.itemService.claimPost(this.item.id, this.user)
-    .subscribe(_ => this.router.navigateByUrl('/found-items/info/'+this.item.id));
-    window.location.reload();
+    .subscribe(_ => {
+      this.router.navigateByUrl('/lost-items/info/'+this.item.id);
+      this.ngOnInit();
+    });
   }
   get alreadyClaimed(){
     return this.item.retriever_id;
@@ -55,6 +57,9 @@ export class FoundInfoPageComponent {
   }
   postDelete(){
     this.itemService.deleteItemByID(this.item.id)
-    .subscribe(_ => this.router.navigateByUrl('/found-items'));
+    .subscribe(_ => {
+      this.router.navigateByUrl('/found-items');
+      this.ngOnInit();
+    });
   }
 }

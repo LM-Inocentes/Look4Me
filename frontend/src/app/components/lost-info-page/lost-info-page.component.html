@@ -33,9 +33,9 @@
       <div>
         <h1>Finder Info</h1>
         <ul *ngIf="item.status;else other_content4">
-          <li>Name: {{item.retriever_name}}</li>
-          <li>Email: {{item.retriever_email}}</li>
-          <li>Contact Info: {{item.retriever_contactinfo}}</li>
+          <li>Name: {{item.returned_name}}</li>
+          <li>Email: {{item.returned_email}}</li>
+          <li>Contact Info: {{item.returned_contactinfo}}</li>
         </ul>
         <ng-template #other_content4>
           <ul>Item Not Yet Found</ul>

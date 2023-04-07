@@ -9,7 +9,6 @@
   box-sizing: border-box;
   transform: translate(-50%,-50%);
   display: flex;
-  justify-content: center;
   border-radius: 1rem;
   background: rgb(2, 54, 71);
   width: 43rem;
@@ -53,7 +52,6 @@ h2{
 	padding: 0;
   color: rgb(255, 43, 6);
   font-weight: bold;
-  text-align: center;
 }
 
 .skills ul a{
@@ -74,7 +72,7 @@ h2{
 
   color: rgba(76, 216, 255);
   font-weight: bold;
-  text-align: left;
+
 
 	border-radius: 2px;
 	display: inline-block;
@@ -155,13 +153,13 @@ h2{
 }
 
 .status[status=false]:after {
-  content : " Item Not Yet Retrieved";
+  content : " Not Yet Retrieved";
   color : rgb(43, 211, 74);
   font-weight: bold;
  }
 
  .status[status=true]:after {
-  content : " Item Already Retrieved";
+  content : " Already Retrieved";
   color : rgb(244, 58, 80);
   font-weight: bold;
  }

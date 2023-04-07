@@ -40,8 +40,10 @@ export class LostInfoPageComponent implements OnInit{
   }
   isClaimed(){
     this.itemService.claimPost(this.item.id, this.user)
-    .subscribe(_ => this.router.navigateByUrl('/lost-items/info/'+this.item.id));
-    window.location.reload();
+    .subscribe(_ => {
+      this.router.navigateByUrl('/lost-items/info/'+this.item.id);
+      this.ngOnInit();
+    });
   }
   get alreadyClaimed(){
     return this.item.retriever_id;
@@ -54,6 +56,9 @@ export class LostInfoPageComponent implements OnInit{
   }
   postDelete(){
     this.itemService.deleteItemByID(this.item.id)
-    .subscribe(_ => this.router.navigateByUrl('/lost-items'));
+    .subscribe(_ => {
+      this.router.navigateByUrl('/lost-items');
+      this.ngOnInit();
+    });
   }
 }
