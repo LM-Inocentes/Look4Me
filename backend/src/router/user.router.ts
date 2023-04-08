@@ -62,13 +62,6 @@ router.post('/register', asyncHandler(
   }
 ))
 
-router.get("/:email", asyncHandler(
-  async (req, res) => {
-    const user = await UserModel.findOne({ email: req.params.email });
-    res.send(user);
-  }
-))
-
 router.patch("/edit/:id", asyncHandler(
   async (req, res) =>{
     const {Fullname, email, contactinfo, password} = req.body;
@@ -92,6 +85,13 @@ router.patch("/edit/:id", asyncHandler(
   }
 ))
 
+router.get("/get", asyncHandler(
+  async (req, res) =>{
+    const users = await UserModel.find();
+    console.log(users);
+    res.send(users);                       
+}
+))
 
 const generateTokenResponse = (user:any) => {
     const token = jwt.sign({

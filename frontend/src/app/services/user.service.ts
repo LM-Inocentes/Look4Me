@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { USER_EDIT_URL, USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
+import { GET_USERS_URL, USER_EDIT_URL, USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { IUserRegister } from '../shared/interfaces/IUserRegister';
 import { User } from '../shared/models/User';
@@ -66,7 +66,6 @@ export class UserService {
   }
 
   Edit(userEdit:IUserRegister, id:string): Observable<User>{
-
     return this.http.patch<User>(USER_EDIT_URL+id, userEdit).pipe(
       tap({
         next: (user) => {
@@ -84,6 +83,9 @@ export class UserService {
     );
   }
 
+  getUsers(): Observable<User[]>{
+    return this.http.get<User[]>(GET_USERS_URL);
+  }
 
   logout(){
     this.userSubject.next(new User());

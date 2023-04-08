@@ -8,7 +8,17 @@ export const USER_REGISTER_URL = BASE_URL + '/api/users/register';
 
 export const USER_EDIT_URL = BASE_URL + '/api/users/edit/';
 
-export const UPLOAD_ITEM_URL = BASE_URL + '/api/items/upload';
+export const GET_USERS_URL = BASE_URL + '/api/users/get/';
+
+export const POST_REQUEST_URL = BASE_URL + '/api/request/';
+
+export const UPDATE_REQUEST_URL = POST_REQUEST_URL + 'update/';
+
+export const GET_REQUEST_URL = POST_REQUEST_URL + 'get/';
+
+export const FIND_REQUEST_URL = POST_REQUEST_URL + 'find/';
+
+export const DELETE_REQUEST_URL = POST_REQUEST_URL + 'delete/';
 
 export const POST_ITEM_URL = BASE_URL + '/api/items/post';
 

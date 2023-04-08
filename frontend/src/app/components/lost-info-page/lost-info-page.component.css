@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+.logo-2 h5 {
+  position: absolute;
+  left: 50%;
+  color: rgba(76, 216, 255);
+  font-family: 'Oswald', sans-serif;
+  font-weight: bolder;
+  font-size: 15px;
+  text-transform: uppercase;
+  line-height:1;
+  background: rgba(10, 93, 121, 0.804);
+  border-radius: .5rem;
+  padding: 8px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
 .container{
   font-family: Montserrat, sans-serif;
   margin: 0;
@@ -11,8 +27,8 @@
   display: flex;
   border-radius: 1rem;
   background: rgb(2, 54, 71);
-  width: 43rem;
-  height: 27rem;
+  width: 43.05rem;
+  height: 28rem;
 }
 
 img{
@@ -31,7 +47,7 @@ img{
 
 h1{
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: rgba(76, 216, 255);
   border-top: 2px solid rgba(76, 216, 255);
 	border-radius: 2px;
@@ -40,10 +56,9 @@ h1{
 
 h2{
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: rgba(76, 216, 255);
 	border-radius: 2px;
-  padding: .1rem;
 }
 
 .skills ul {

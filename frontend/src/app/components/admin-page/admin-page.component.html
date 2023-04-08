@@ -1,1 +1,17 @@
-<p>admin-page works!</p>
+<div *ngFor="let userForm of userForms">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm)">
+    <label for="Fullname">Full Name:</label>
+    <input type="text" id="Fullname" formControlName="Fullname">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+
+    <label for="contactinfo">Contact Info:</label>
+    <input type="text" id="contactinfo" formControlName="contactinfo">
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+
+    <button type="submit">Submit</button>
+  </form>
+</div>

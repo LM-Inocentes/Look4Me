@@ -10,6 +10,7 @@ import { FoundInfoPageComponent } from './components/found-info-page/found-info-
 import { EditFoundComponent } from './components/edit-found/edit-found.component';
 import { EditLostComponent } from './components/edit-lost/edit-lost.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path : 'found-items/info/:itemID/edit-found',title: 'LOOK4ME:Edit',  component : EditFoundComponent},
   {path : 'lost-items/info/:itemID/edit-lost',title: 'LOOK4ME:Edit',  component : EditLostComponent},
   {path : 'profile/:id',title: 'LOOK4ME:Profile',  component : ProfilePageComponent},
+  {path : 'admin-page/:id',title: 'LOOK4ME:Admin',  component : AdminPageComponent},
 ];
 
 @NgModule({

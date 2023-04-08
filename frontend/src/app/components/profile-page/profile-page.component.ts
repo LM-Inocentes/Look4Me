@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ItemsService } from 'src/app/services/items.service';
 import { UserService } from 'src/app/services/user.service';
+import { IupdateReq } from 'src/app/shared/interfaces/IRequestUpdate';
 import { IUserRegister } from 'src/app/shared/interfaces/IUserRegister';
 import { Item } from 'src/app/shared/models/Item';
 import { User } from 'src/app/shared/models/User';
+import { UserRequest } from 'src/app/shared/models/UserRequest';
 
 
 @Component({
@@ -25,7 +27,8 @@ export class ProfilePageComponent {
   edit = false;
   isSubmitted = false;
 
-  constructor(private itemService: ItemsService, private router: Router, private userService: UserService, private toastrService: ToastrService) { }
+  constructor(private itemService: ItemsService, private router: Router, private userService:
+    UserService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
       this.userService.userObservable.subscribe((newUser) => {
@@ -77,7 +80,7 @@ export class ProfilePageComponent {
       confirmPassword: formData.password,
     };
     this.userService.Edit(userEdit, this.user.id).subscribe(_ => {
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/login");
     })
   }
 
@@ -85,25 +88,43 @@ export class ProfilePageComponent {
     this.edit = !this.edit;
   }
 
-  Navigate(item: Item){
-    if(item.type){
-      this.router.navigateByUrl("lost-items/info/"+item.id);
+  Navigate(id: string, type: boolean){
+    if(!type){
+      this.router.navigateByUrl("lost-items/info/"+id);
       return;
     }
-    this.router.navigateByUrl("found-items/info/"+item.id);
+    this.router.navigateByUrl("found-items/info/"+id);
+  }
+
+  posterApproveReq(request:UserRequest){
+    if(!request.status){
+      return false;
+    }
+    else if(request.poster_date.length>0){
+
+    }
+    return true;
   }
 
   reqApprove(item: Item){
-    this.itemService.Approve(item)
-    .subscribe(_ => {
+    const update: IupdateReq = {
+      id: item.id,
+      approve: true,
+      poster_date: new Date().toLocaleString(),
+    }
+    this.itemService.Approve(item).subscribe(_ => {
       this.router.navigateByUrl(this.returnUrl);
       this.ngOnInit();
     });
   }
 
   reqDeny(item: Item){
-    this.itemService.Deny(item)
-    .subscribe(_ => {
+    const update: IupdateReq = {
+      id: item.id,
+      approve: false,
+      poster_date: new Date().toLocaleString(),
+    }
+    this.itemService.Deny(item).subscribe(_ => {
       this.router.navigateByUrl(this.returnUrl);
       this.ngOnInit();
     });
@@ -112,8 +133,12 @@ export class ProfilePageComponent {
   reqChange(item: Item){
     var result = confirm("Want to Change Owner to Requester?");
     if (result) {
-      this.itemService.Change(item)
-      .subscribe(_ => {
+      const update: IupdateReq = {
+        id: item.id,
+        approve: false,
+        poster_date: new Date().toLocaleDateString(),
+      }
+      this.itemService.Change(item).subscribe(_ => {
       this.router.navigateByUrl(this.returnUrl);
       this.ngOnInit();
     });

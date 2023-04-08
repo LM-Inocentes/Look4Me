@@ -76,7 +76,12 @@ const router = Router();
 
   router.get("/user/requests/:id", asyncHandler(
     async (req, res) =>{
-      const item = await ItemModel.find({retriever_id: req.params.id}).sort({date:-1});
+      const item = await ItemModel.find({
+        $or: [
+          { retriever_id: req.params.id },
+          { returned_id: req.params.id }
+        ]
+      }).sort({ date: -1, type: -1 });
       res.send(item);                       
   }
   ))
@@ -164,23 +169,19 @@ const router = Router();
 
   router.patch("/claim/:id/", asyncHandler(
     async (req, res) =>{
-      const now = new Date();
-      const formattedDate = now.toLocaleDateString('en-US');
       const {id} = req.body;
       const item = await ItemModel.findOne({_id: req.params.id});
       const user = await UserModel.findOne({_id: id});
-      await item!.updateOne({ $set: { "retriever_id": id, "retriever_name": user?.Fullname, "retriever_email": user?.email, "retriever_contactinfo": user?.contactinfo, "retriever_date": formattedDate } });
+      await item!.updateOne({ $set: { "retriever_id": id, "retriever_name": user?.Fullname, "retriever_email": user?.email, "retriever_contactinfo": user?.contactinfo, "retriever_date": new Date().toLocaleString(), } });
       res.send();                    
     }
   ))
 
   router.patch("/approve", asyncHandler(
     async (req, res) =>{
-      const now = new Date();
-      const formattedDate = now.toLocaleDateString('en-US');
       const {id} = req.body;
       const item = await ItemModel.findOne({_id: id});
-      await item!.updateOne({ $set: { "returned_id": item?.retriever_id, "returned_name": item?.retriever_name, "returned_email": item?.retriever_email, "returned_contactinfo": item?.retriever_contactinfo, "returned_date": item?.retriever_contactinfo} });
+      await item!.updateOne({ $set: { "returned_id": item?.retriever_id, "returned_name": item?.retriever_name, "returned_email": item?.retriever_email, "returned_contactinfo": item?.retriever_contactinfo, "returned_date": new Date().toLocaleString()} });
       await item!.updateOne({ $set: { "status": true ,"retriever_id": "", "retriever_name": "", "retriever_email": "", "retriever_contactinfo": "", "retriever_date": "" } });
       res.send();                    
     }
@@ -190,7 +191,7 @@ const router = Router();
     async (req, res) =>{
       const {id} = req.body;
       const item = await ItemModel.findOne({_id: id});
-      await item!.updateOne({ $set: { "retriever_id": "", "retriever_name": "", "retriever_email": "", "retriever_contactinfo": "" } });
+      await item!.updateOne({ $set: { "retriever_id": "", "retriever_name": "", "retriever_email": "", "retriever_contactinfo": "", "retriever_date": ""  } });
       res.send();                    
     }
   ))
@@ -199,8 +200,8 @@ const router = Router();
     async (req, res) =>{
       const {id} = req.body;
       const item = await ItemModel.findOne({_id: id});
-      await item!.updateOne({ $set: { "status": true ,"returned_id": item?.retriever_id, "returned_name": item?.retriever_name, "returned_email": item?.retriever_email, "returned_contactinfo": item?.retriever_contactinfo } });
-      await item!.updateOne({ $set: { "retriever_id": "", "retriever_name": "", "retriever_email": "", "retriever_contactinfo": "" } });
+      await item!.updateOne({ $set: { "status": true ,"returned_id": item?.retriever_id, "returned_name": item?.retriever_name, "returned_email": item?.retriever_email, "returned_contactinfo": item?.retriever_contactinfo, "returned_date": new Date().toLocaleString() } });
+      await item!.updateOne({ $set: { "retriever_id": "", "retriever_name": "", "retriever_email": "", "retriever_contactinfo": "", "retriever_date": ""  } });
       res.send();                    
     }
   ))

@@ -70,7 +70,8 @@
   <table class='res-table'>
       <thead>
       <tr>
-          <th>Date</th>
+          <th>Last Update</th>
+          <th>Type</th>
           <th>Item</th>
           <th>Item Name</th>
           <th>Status</th>
@@ -81,11 +82,26 @@
       </thead>
       <tbody>
       <tr *ngFor='let post of posts'>
-          <td>{{post.date| date: 'MM/dd/yyyy'}}</td>
+
+          <td *ngIf="(post.returned_date) ;else reqdate">{{post.returned_date}}</td>
+          <ng-template #reqdate>
+            <td *ngIf="(post.retriever_date) ;else postdate">{{post.retriever_date}}</td>
+          </ng-template>
+          <ng-template #postdate>
+            <td>{{post.date}}</td>
+          </ng-template>
+
+          <ng-template #postdate>
+            <td>{{post.date| date: 'MM/dd/yyyy'}}</td>
+          </ng-template>
+          <td *ngIf="(post.type) ;else lost">Found</td>
+          <ng-template #lost>
+            <td>Lost</td>
+          </ng-template>
           <td>
-            <img (click)="Navigate(post)" src="{{post.img}}" title="{{post.name}}">
+            <img (click)="Navigate(post.id, post.type)" src="{{post.img}}" title="{{post.name}}">
           </td>
-          <td (click)="Navigate(post)">{{ post.name }}</td>
+          <td (click)="Navigate(post.id, post.type)">{{ post.name }}</td>
           <td *ngIf="post.status;else False">Already Returned</td>
           <ng-template #False>
             <td>Not Yet Returned</td>
@@ -108,6 +124,9 @@
           <ng-template #Change>
             <td *ngIf="post.retriever_name;else True2">
               <div>
+                <button (click)="reqDeny(post)" style="color: rgb(238, 48, 30);">
+                  Reject
+              </button>
                 <button (click)="reqChange(post)" style="color: rgb(123, 208, 241);">
                     Change
                 </button>
@@ -124,6 +143,8 @@
   <table class='res-table'>
       <thead>
       <tr>
+          <th>Last Update</th>
+          <th>Type</th>
           <th>Item</th>
           <th>Item Name</th>
           <th>Poster Info</th>
@@ -132,14 +153,25 @@
       </thead>
       <tbody>
       <tr *ngFor='let request of requests '>
+          <td *ngIf="(request.returned_date) ;else reqdate">{{request.returned_date}}</td>
+          <ng-template #reqdate>
+            <td>{{request.retriever_date}}</td>
+          </ng-template>
+          <td *ngIf="(request.type) ;else lost">Found</td>
+          <ng-template #lost>
+            <td>Lost</td>
+          </ng-template>
           <td>
-            <img (click)="Navigate(request)" src="{{request.img}}" title="{{request.name}}">
+            <img (click)="Navigate(request.id, request.type)" src="{{request.img}}" title="{{request.name}}">
           </td>
-          <td (click)="Navigate(request)">{{ request.name }}</td>
-          <td>{{ request.poster_name }} <br> {{ request.poster_email }} <br> {{ request.poster_contactinfo }}</td>
-          <td *ngIf="!request.status;else True">Not Yet Approved</td>
-          <ng-template #True>
-            <td>Approved</td>
+          <td (click)="Navigate(request.id, request.type)">{{ request.name }}</td>
+          <td *ngIf="request.poster_name.length>0 ;else Noinfo">{{ request.poster_name }} <br> {{ request.poster_email }} <br> {{ request.poster_contactinfo }}</td>
+          <ng-template #Noinfo>
+            <td>Rejected</td>
+          </ng-template>
+          <td *ngIf="request.status;else False">Successfully Returned</td>
+          <ng-template #False>
+            <td>Pending</td>
           </ng-template>
       </tr>
       </tbody>
