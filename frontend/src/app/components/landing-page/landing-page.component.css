@@ -54,6 +54,35 @@ background-size: cover;
   color: #fff;
 }
 
+.contact-box {
+  position: absolute;
+  height: 95px;
+  width: 200px;
+  top: 620px;
+  right: 70px;
+  background-color: #12544c4d;
+  border-radius: 1rem;
+}
+
+.contact {
+  text-align: center;
+  font-size: 19px;
+  color: #17d2e7;
+  display: block;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.contactinfo {
+  text-align: center;
+  color: #17d2e7;
+  display: block;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin: 10px;
+}
+
 .text-box {
   position: absolute;
   top: 50%;

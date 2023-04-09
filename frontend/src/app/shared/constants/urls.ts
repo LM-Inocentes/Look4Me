@@ -8,7 +8,11 @@ export const USER_REGISTER_URL = BASE_URL + '/api/users/register';
 
 export const USER_EDIT_URL = BASE_URL + '/api/users/edit/';
 
+export const GET_ADMIN_URL = BASE_URL + '/api/users/admin/';
+
 export const GET_USERS_URL = BASE_URL + '/api/users/get/';
+
+export const DELETE_USERS_URL = BASE_URL + '/api/users/delete/';
 
 export const POST_REQUEST_URL = BASE_URL + '/api/request/';
 
@@ -30,6 +34,8 @@ export const DENY_URL = BASE_URL + '/api/items/deny/';
 
 export const CHANGE_URL = BASE_URL + '/api/items/change/';
 
+export const ITEM_PROFILE_UPDATE = BASE_URL + '/api/items/profile/update/';
+
 export const GET_FOUND_ITEM_URL = BASE_URL + '/api/items/found';
 
 export const GET_LOST_ITEM_URL = BASE_URL + '/api/items/lost';
@@ -42,7 +48,11 @@ export const GET_INFO_ITEM = BASE_URL + '/api/items/info/';
 
 export const GET_USER_POSTS = BASE_URL + '/api/items/user/posts/';
 
+export const GET_ALL_POSTS = BASE_URL + '/api/items/all/posts/';
+
 export const GET_USER_REQUESTS = BASE_URL + '/api/items/user/requests/';
+
+export const GET_ALL_REQUESTS = BASE_URL + '/api/items/all/requests/';
 
 export const EDIT_INFO_ITEM = BASE_URL + '/api/items/info/edit/';
 

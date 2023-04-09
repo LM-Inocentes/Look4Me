@@ -87,9 +87,15 @@ router.patch("/edit/:id", asyncHandler(
 
 router.get("/get", asyncHandler(
   async (req, res) =>{
-    const users = await UserModel.find();
-    console.log(users);
+    const users = await UserModel.find({_id: { $ne: "642d959eb62173ebc88f3447" }});
     res.send(users);                       
+}
+))
+
+router.get("/admin", asyncHandler(
+  async (req, res) =>{
+    const admin = await UserModel.findOne({_id: "642d959eb62173ebc88f3447" });
+    res.send(admin);                       
 }
 ))
 
@@ -108,5 +114,13 @@ const generateTokenResponse = (user:any) => {
         token: token,
       };
 }
+
+router.delete("/delete/:id", asyncHandler(
+  async (req, res) => {
+    const user = await UserModel.findOne({ _id: req.params.id });
+    await user!.delete(); 
+    res.send();
+  }
+))
 
 export default router;

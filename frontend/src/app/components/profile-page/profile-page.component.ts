@@ -25,7 +25,6 @@ export class ProfilePageComponent {
   itemUrl!:string;
   editForm!:FormGroup;
   edit = false;
-  isSubmitted = false;
 
   constructor(private itemService: ItemsService, private router: Router, private userService:
     UserService, private toastrService: ToastrService) { }
@@ -79,6 +78,8 @@ export class ProfilePageComponent {
       password: formData.password,
       confirmPassword: formData.password,
     };
+    this.itemService.userProfileEdit(userEdit, this.user.id).subscribe(_ => {
+    })
     this.userService.Edit(userEdit, this.user.id).subscribe(_ => {
       this.router.navigateByUrl("/login");
     })
@@ -94,16 +95,6 @@ export class ProfilePageComponent {
       return;
     }
     this.router.navigateByUrl("found-items/info/"+id);
-  }
-
-  posterApproveReq(request:UserRequest){
-    if(!request.status){
-      return false;
-    }
-    else if(request.poster_date.length>0){
-
-    }
-    return true;
   }
 
   reqApprove(item: Item){

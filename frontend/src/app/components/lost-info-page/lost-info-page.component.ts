@@ -38,10 +38,10 @@ export class LostInfoPageComponent implements OnInit{
   }
 
   get isPoster(){
-    return (this.item.poster_email===this.user.email)||("admin@gmail.com"===this.user.email);
+    return (this.item.poster_email===this.user.email)||("642d959eb62173ebc88f3447"===this.user.id);
   }
   get isAdmin(){
-    return ("admin@gmail.com"===this.user.email);
+    return ("642d959eb62173ebc88f3447"===this.user.id);
   }
   get isAuth(){
     return this.user.token;

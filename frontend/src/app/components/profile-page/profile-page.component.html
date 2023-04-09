@@ -78,6 +78,7 @@
           <th>Owner/Finder</th>
           <th>Request</th>
           <th>Manage Request</th>
+          <th>Manage</th>
       </tr>
       </thead>
       <tbody>
@@ -133,6 +134,16 @@
             </div>
             </td>
           </ng-template>
+          <td>
+            <button *ngIf="post.type ;else editLost" routerLink="/found-items/info/{{post.id}}/edit-found" style="color: rgb(255, 255, 255);">
+                Edit
+            </button>
+            <ng-template #editLost>
+              <button *ngIf="!post.type ;else editLost" routerLink="/lost-items/info/{{post.id}}/edit-lost" style="color: rgb(255, 255, 255);">
+                Edit
+            </button>
+            </ng-template>
+          </td>
       </tr>
       </tbody>
   </table>

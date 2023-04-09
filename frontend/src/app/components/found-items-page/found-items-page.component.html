@@ -32,10 +32,10 @@
     <h3>No Results</h3>
     </div>
   </li>
-  <div class="found" *ngIf="isAuth">
+  <div class="found" *ngIf="isAuth&&!isAdmin">
     <button routerLink="/post-found">Post Found Item</button>
   </div>
-  <div class="found" *ngIf="!isAuth">
+  <div class="found" *ngIf="!isAuth&&!isAdmin">
     <button routerLink="/login">Post Found Item</button>
   </div>
 </ul>

@@ -74,6 +74,13 @@ const router = Router();
   }
   ))
 
+  router.get("/all/posts", asyncHandler(
+    async (req, res) =>{
+      const item = await ItemModel.find().sort({date:-1, type:1});
+      res.send(item);                       
+  }
+  ))
+
   router.get("/user/requests/:id", asyncHandler(
     async (req, res) =>{
       const item = await ItemModel.find({
@@ -85,6 +92,19 @@ const router = Router();
       res.send(item);                       
   }
   ))
+
+  router.get("/all/requests", asyncHandler(
+    async (req, res) => {
+      const item = await ItemModel.find({
+        $or: [
+          { retriever_id: { $ne: "" } },
+          { returned_id: { $ne: "" } }
+        ]
+      }).sort({ date: -1, type: 1 });
+      res.send(item);
+    }
+  ));
+
 
   router.get("/lost/search/:searchTerm", asyncHandler(
     async (req, res) => {
@@ -176,6 +196,41 @@ const router = Router();
       res.send();                    
     }
   ))
+
+  router.patch("/profile/update/id:", asyncHandler(
+    async (req, res) => {
+      const { Fullname, email, contactinfo } = req.body;
+
+      const posterItems = await ItemModel.find({ poster_id: req.params.id });
+      if(posterItems){
+        for (let i = 0; i < posterItems.length; i++) {
+          const posterItem = posterItems[i];
+          await posterItem.updateOne({
+            $set: {"poster_name": Fullname, "poster_email": email, "poster_contactinfo": contactinfo}});
+        }
+      }
+
+      const retrieverItems = await ItemModel.find({ retriever_id: req.params.id });
+      if(retrieverItems){
+        for (let i = 0; i < retrieverItems.length; i++) {
+          const retrieverItem = retrieverItems[i];
+          await retrieverItem.updateOne({
+            $set: {"retriever_name": Fullname,"retriever_email": email,"retriever_contactinfo": contactinfo}});
+        }
+      }
+    
+      const returnedItems = await ItemModel.find({ returned_id: req.params.id });
+      if(returnedItems){
+        for (let i = 0; i < returnedItems.length; i++) {
+          const returnedItem = returnedItems[i];
+          await returnedItem.updateOne({
+            $set: {"returned_name": Fullname,"returned_email": email,"returned_contactinfo": contactinfo}});
+        }
+      }
+      res.send();
+    }
+));
+
 
   router.patch("/approve", asyncHandler(
     async (req, res) =>{
