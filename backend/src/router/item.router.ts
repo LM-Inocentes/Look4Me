@@ -200,9 +200,6 @@ const router = Router();
   router.patch("/profile/update/:id", asyncHandler(
     async (req, res) => {
       const { Fullname, email, contactinfo } = req.body;
-      console.log(Fullname);
-      console.log(email);
-      console.log(contactinfo);
       const posterItems = await ItemModel.find({ poster_id: req.params.id });
       if(posterItems){
         for (let i = 0; i < posterItems.length; i++) {
