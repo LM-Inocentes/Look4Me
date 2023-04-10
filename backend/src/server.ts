@@ -23,7 +23,9 @@ const app = express();
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://look4me.netlify.app'
+  }));
 
 
 app.use("/api/users/", userRouter);
