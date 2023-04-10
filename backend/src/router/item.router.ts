@@ -269,6 +269,17 @@ const router = Router();
     }
   ))
 
+  router.delete("/deleteAll-item", asyncHandler(
+    async (req, res) => {
+      const ITEMS = await ItemModel.find();
+      for (const ITEM of ITEMS) {
+        await cloudinary.uploader.destroy(ITEM.imgName);
+        await ITEM.delete();
+      }
+      res.send();
+    }
+  ))
+
 
 export default router;
 

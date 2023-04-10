@@ -125,9 +125,12 @@
     </ng-container>
     </tbody>
   </table>
+  <button *ngIf="users && users.length" (click)="deleteAllUsers()"  style="color: rgb(239, 40, 40);">
+    Delete All Users
+  </button>
 </div>
 
-<div *ngIf="posts.length>0">
+<div>
   <h2 >Posts</h2>
   <button (click)="togglehidePost()" style="color: greenyellow;">
     Toggle
@@ -217,9 +220,12 @@
       </tr>
       </tbody>
   </table>
+  <button *ngIf="posts && posts.length" (click)="postDeleteAll()"  style="color: rgb(239, 40, 40);">
+    Delete All Posts
+  </button>
 </div>
 
-<div *ngIf="requests.length>0">
+<div>
   <h2 >Requests</h2>
   <table class='res-table'>
       <thead>

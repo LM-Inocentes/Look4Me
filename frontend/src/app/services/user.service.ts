@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { DELETE_USERS_URL, GET_ADMIN_URL, GET_USERS_URL, USER_EDIT_URL, USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
+import { DELETE_ALL_USERS, DELETE_USERS_URL, GET_ADMIN_URL, GET_USERS_URL, USER_EDIT_URL, USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { IUserRegister } from '../shared/interfaces/IUserRegister';
 import { User } from '../shared/models/User';
@@ -121,6 +121,22 @@ export class UserService {
   getUsers(): Observable<User[]>{
     return this.http.get<User[]>(GET_USERS_URL);
   }
+
+  deleteAllUsers(){
+    return this.http.delete(DELETE_ALL_USERS).pipe(
+      tap({
+        next: (id) => {
+            this.toastrService.success(
+              'All Users Deleted'
+            )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Deletion Failed');
+        }
+      })
+    );;
+  }
+
 
   logout(){
     this.userSubject.next(new User());

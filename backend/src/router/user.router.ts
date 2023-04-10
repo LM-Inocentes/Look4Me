@@ -123,4 +123,11 @@ router.delete("/delete/:id", asyncHandler(
   }
 ))
 
+router.delete("/deleteAll", asyncHandler(
+  async (req, res) => {
+    const result = await UserModel.deleteMany({ _id: { $ne: "642d959eb62173ebc88f3447" } });
+    res.send(result);
+  }
+))
+
 export default router;

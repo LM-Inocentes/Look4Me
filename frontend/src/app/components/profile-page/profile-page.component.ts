@@ -8,7 +8,6 @@ import { IupdateReq } from 'src/app/shared/interfaces/IRequestUpdate';
 import { IUserRegister } from 'src/app/shared/interfaces/IUserRegister';
 import { Item } from 'src/app/shared/models/Item';
 import { User } from 'src/app/shared/models/User';
-import { UserRequest } from 'src/app/shared/models/UserRequest';
 
 
 @Component({

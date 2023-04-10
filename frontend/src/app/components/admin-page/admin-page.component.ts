@@ -133,6 +133,11 @@ export class AdminPageComponent {
         this.ngOnInit();
       });
   }
+  deleteAllUsers(){
+    this.userService.deleteAllUsers().subscribe(_ => {
+      this.ngOnInit();
+    });
+}
 
   Navigate(id: string, type: boolean){
     if(!type){
@@ -180,6 +185,12 @@ export class AdminPageComponent {
 
   postDelete(id:string){
     this.itemService.deleteItemByID(id).subscribe(_ => {
+      this.ngOnInit();
+    });
+  }
+
+  postDeleteAll(){
+    this.itemService.deleteAllItem().subscribe(_ => {
       this.ngOnInit();
     });
   }

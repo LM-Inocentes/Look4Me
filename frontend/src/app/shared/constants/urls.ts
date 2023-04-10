@@ -14,6 +14,8 @@ export const GET_USERS_URL = BASE_URL + '/api/users/get/';
 
 export const DELETE_USERS_URL = BASE_URL + '/api/users/delete/';
 
+export const DELETE_ALL_USERS = BASE_URL + '/api/users/deleteAll/';
+
 export const POST_REQUEST_URL = BASE_URL + '/api/request/';
 
 export const UPDATE_REQUEST_URL = POST_REQUEST_URL + 'update/';
@@ -59,3 +61,5 @@ export const EDIT_INFO_ITEM = BASE_URL + '/api/items/info/edit/';
 export const EDIT_INFO_ITEM1 = BASE_URL + '/api/items/info/edit1/';
 
 export const DELETE_ITEM = BASE_URL + '/api/items/delete-item/';
+
+export const DELETE_ALL_ITEM = BASE_URL + '/api/items/deleteAll-item/';

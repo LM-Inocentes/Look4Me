@@ -4,7 +4,6 @@ import { ItemsService } from 'src/app/services/items.service';
 import { UserService } from 'src/app/services/user.service';
 import { Item } from 'src/app/shared/models/Item';
 import { User } from 'src/app/shared/models/User';
-import { UserRequest } from 'src/app/shared/models/UserRequest';
 
 
 @Component({
@@ -40,31 +39,6 @@ export class FoundInfoPageComponent {
     return this.user.token;
   }
   isClaimed(){
-    const request:UserRequest = {
-      id: this.item.id,
-      type: this.item.type,
-      name: this.item.name,
-      img: this.item.img,
-      imgName: this.item.imgName,
-      characteristic: this.item.characteristic,
-      loc: this.item.loc,
-      date: this.item.date,
-      more_info: this.item.more_info,
-      status: true,
-
-      poster_id: this.item.poster_id,
-      poster_email: this.item.poster_email,
-      poster_name: this.item.poster_name,
-      poster_contactinfo: this.item.poster_contactinfo,
-      poster_date: "",
-
-      request_id: this.user.id,
-      request_email: this.user.email,
-      request_name: this.user.Fullname,
-      request_contactinfo: this.user.contactinfo,
-      request_date: new Date().toLocaleString(),
-    }
-
     this.itemService.claimPost(this.item.id, this.user).subscribe(_ => {
       this.router.navigateByUrl('/found-items/info/'+this.item.id);
       this.ngOnInit();

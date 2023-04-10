@@ -94,7 +94,7 @@ button {
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   border-radius: 6px;
   border: none;
-  background: linear-gradient(180deg, rgb(146, 91, 209) 0%, #367AF6 100%);
+  background: linear-gradient(180deg, rgb(0, 0, 0) 0%, #232826 100%);
    background-origin: border-box;
   box-shadow: 0px 0.5px 1.5px rgba(54, 208, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
   user-select: none;
