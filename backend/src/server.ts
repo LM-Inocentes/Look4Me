@@ -4,7 +4,7 @@
 // npm install nodemon --save-dev
 
 
-
+import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -30,6 +30,11 @@ app.use(cors({
 
 app.use("/api/users/", userRouter);
 app.use("/api/items/", itemRouter);
+
+app.use(express.static('public'));
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname, '/public', '/index.html'))
+})
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
