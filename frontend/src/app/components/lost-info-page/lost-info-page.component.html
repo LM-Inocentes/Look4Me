@@ -65,7 +65,7 @@
     </div>
     <ng-template #claim>
       <div class="found">
-        <button (click)="isClaimed()" *ngIf="!item.status&&!isPoster&&!alreadyClaimed">Return Item</button>
+        <button (click)="isClaimed()" *ngIf="!item.status&&!isPoster&&!alreadyClaimed&&isAuth">Return Item</button>
       </div>
     </ng-template>
     <div class="edit" *ngIf="isPoster">
