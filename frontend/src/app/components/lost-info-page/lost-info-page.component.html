@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="found">
-      <button (click)="isClaimed()" *ngIf="item.status&&!accessOwner&&!isPoster&&!accessClaim&&isAuth; else claim">Request Change</button>
+      <button (click)="isClaimed()" *ngIf="item.status&&!accessOwner&&!isPoster&&!accessClaim; else claim">Request Change</button>
     </div>
     <ng-template #claim>
       <div class="found">
