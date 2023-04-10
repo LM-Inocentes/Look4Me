@@ -21,7 +21,6 @@ export class FoundInfoPageComponent {
   ngOnInit(): void {
     this.userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
-      console.log(this.user);
     });
     this.activatedRoute.params.subscribe((params) => {
         this.itemService.getItemByID(params.itemID).subscribe(serverItem => {
