@@ -1,9 +1,0 @@
-{
-    "name": "look4me",
-    "version": "1.0.0",
-    "scripts": {
-        "start": "cd backend/built && node server.js",
-        "prebuild": "cd backend && npm run build",
-        "build": "cd frontend && npm run build"
-    }
-}
