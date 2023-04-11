@@ -21,19 +21,19 @@ export class FoundInfoPageComponent {
   ngOnInit(): void {
     this.userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
-      console.log(this.user);
     });
     this.activatedRoute.params.subscribe((params) => {
         this.itemService.getItemByID(params.itemID).subscribe(serverItem => {
         this.item = serverItem;
+        console.log(this.alreadyClaimed&&this.isPoster);
       });
-    })
+    });
   }
   get isPoster(){
-    return (this.item.poster_email===this.user.email)||("admin@gmail.com"===this.user.email);
+    return (this.item.poster_email===this.user.email)||("642d959eb62173ebc88f3447"===this.user.id);
   }
   get isAdmin(){
-    return ("admin@gmail.com"===this.user.email);
+    return ("642d959eb62173ebc88f3447"===this.user.id);
   }
   get isAuth(){
     return this.user.token;
@@ -45,17 +45,41 @@ export class FoundInfoPageComponent {
     });
   }
   get alreadyClaimed(){
-    return this.item.retriever_id;
+    return !(this.item.retriever_id==='');
   }
-  get accessAdmin(){
-    return ("admin@gmail.com"===this.user.email);
+
+  get alreadyReturned(){
+    return !(this.item.returned_id==='');
   }
+
+
   get accessClaim(){
     return (this.item.retriever_id===this.user.id);
   }
 
   get accessOwner(){
     return (this.item.returned_id===this.user.id);
+  }
+
+  reqApprove(item: Item){
+    this.itemService.Approve(item).subscribe(_ => {
+      this.ngOnInit();
+    });
+  }
+
+  reqDeny(item: Item){
+    this.itemService.Deny(item).subscribe(_ => {
+      this.ngOnInit();
+    });
+  }
+
+  reqChange(item: Item){
+    var result = confirm("Want to Change Requester to Owner?");
+    if (result) {
+      this.itemService.Change(item).subscribe(_ => {
+      this.ngOnInit();
+    });
+    }
   }
 
   postDelete(){
