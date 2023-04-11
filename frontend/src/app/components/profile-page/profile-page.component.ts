@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ItemsService } from 'src/app/services/items.service';
 import { UserService } from 'src/app/services/user.service';
-import { IupdateReq } from 'src/app/shared/interfaces/IRequestUpdate';
 import { IUserRegister } from 'src/app/shared/interfaces/IUserRegister';
 import { Item } from 'src/app/shared/models/Item';
 import { User } from 'src/app/shared/models/User';
@@ -97,39 +96,21 @@ export class ProfilePageComponent {
   }
 
   reqApprove(item: Item){
-    const update: IupdateReq = {
-      id: item.id,
-      approve: true,
-      poster_date: new Date().toLocaleString(),
-    }
     this.itemService.Approve(item).subscribe(_ => {
-      this.router.navigateByUrl(this.returnUrl);
       this.ngOnInit();
     });
   }
 
   reqDeny(item: Item){
-    const update: IupdateReq = {
-      id: item.id,
-      approve: false,
-      poster_date: new Date().toLocaleString(),
-    }
     this.itemService.Deny(item).subscribe(_ => {
-      this.router.navigateByUrl(this.returnUrl);
       this.ngOnInit();
     });
   }
 
   reqChange(item: Item){
-    var result = confirm("Want to Change Owner to Requester?");
+    var result = confirm("Want to Change Requester to Owner/Finder?");
     if (result) {
-      const update: IupdateReq = {
-        id: item.id,
-        approve: false,
-        poster_date: new Date().toLocaleDateString(),
-      }
       this.itemService.Change(item).subscribe(_ => {
-      this.router.navigateByUrl(this.returnUrl);
       this.ngOnInit();
     });
     }

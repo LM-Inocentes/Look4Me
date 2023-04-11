@@ -44,16 +44,38 @@ export class LostInfoPageComponent implements OnInit{
     });
   }
   get alreadyClaimed(){
-    return this.item.retriever_id;
+    return !(this.item.retriever_id==='');
   }
-  get accessAdmin(){
-    return ("admin@gmail.com"===this.user.email);
+  get alreadyReturned(){
+    return !(this.item.returned_id==='');
   }
+
   get accessClaim(){
     return (this.item.retriever_id===this.user.id);
   }
   get accessOwner(){
     return (this.item.returned_id===this.user.id);
+  }
+
+  reqApprove(item: Item){
+    this.itemService.Approve(item).subscribe(_ => {
+      this.ngOnInit();
+    });
+  }
+
+  reqDeny(item: Item){
+    this.itemService.Deny(item).subscribe(_ => {
+      this.ngOnInit();
+    });
+  }
+
+  reqChange(item: Item){
+    var result = confirm("Want to Change Requester to Finder?");
+    if (result) {
+      this.itemService.Change(item).subscribe(_ => {
+      this.ngOnInit();
+    });
+    }
   }
 
   postDelete(){

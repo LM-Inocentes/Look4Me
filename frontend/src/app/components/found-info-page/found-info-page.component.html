@@ -69,6 +69,22 @@
         <button (click)="isClaimed()" *ngIf="!item.status&&!isPoster&&!alreadyClaimed&&isAuth">Claim Item</button>
       </div>
     </ng-template>
+    <div class="found">
+      <button (click)="reqChange(item)" *ngIf="alreadyClaimed&&isPoster&&alreadyReturned ; else req" >Change Owner</button>
+    </div>
+    <ng-template #req>
+      <div class="found">
+        <button (click)="reqApprove(item)" *ngIf="isPoster&&alreadyClaimed">Approve</button>
+      </div>
+    </ng-template>
+    <div class="reject">
+      <button (click)="reqDeny(item)" *ngIf="alreadyClaimed&&isPoster&&alreadyReturned ; else deny" >Reject</button>
+    </div>
+    <ng-template #deny>
+      <div class="reject">
+        <button (click)="reqDeny(item)" *ngIf="alreadyClaimed&&isPoster">Reject</button>
+      </div>
+    </ng-template>
     <div class="edit" *ngIf="isPoster">
       <button routerLink="./edit-found">Edit Post</button>
     </div>
@@ -78,7 +94,6 @@
   </div>
 
 </body>
-
 
 
 

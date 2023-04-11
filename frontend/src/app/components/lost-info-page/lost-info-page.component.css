@@ -96,8 +96,6 @@ h2{
 
 }
 
-
-
 .found button{
   font-family: Montserrat, sans-serif;
   position: absolute;
@@ -109,6 +107,23 @@ h2{
   outline: none;
   height: 40px;
   background: rgb(12, 4, 155);
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  border-radius: 6px;
+}
+
+.reject button{
+  font-family: Montserrat, sans-serif;
+  position: absolute;
+  top: 33rem;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border: .3rem;
+  border-color: #000;
+  outline: none;
+  height: 40px;
+  background: rgb(69, 7, 7);
   color: white;
   font-size: 18px;
   letter-spacing: 1px;
@@ -167,6 +182,11 @@ h2{
   color: rgb(2, 54, 71);
 }
 
+.reject button:hover{
+  cursor: pointer;
+  background: rgba(76, 216, 255);
+  color: rgb(2, 54, 71);
+}
 .status[status=false]:after {
   content : " Item Not Yet Found";
   color : rgb(43, 211, 74);
