@@ -25,7 +25,6 @@ export class FoundInfoPageComponent {
     this.activatedRoute.params.subscribe((params) => {
         this.itemService.getItemByID(params.itemID).subscribe(serverItem => {
         this.item = serverItem;
-        console.log(this.alreadyClaimed&&this.isPoster);
       });
     });
   }
