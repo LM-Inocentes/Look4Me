@@ -192,7 +192,7 @@ const router = Router();
       const {id} = req.body;
       const item = await ItemModel.findOne({_id: req.params.id});
       const user = await UserModel.findOne({_id: id});
-      await item!.updateOne({ $set: { "retriever_id": id, "retriever_name": user?.Fullname, "retriever_email": user?.email, "retriever_contactinfo": user?.contactinfo, "retriever_date": new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' }) } });
+      await item!.updateOne({ $set: { "retriever_id": id, "retriever_name": user?.Fullname, "retriever_email": user?.email, "retriever_contactinfo": user?.contactinfo, "retriever_date": new Date().toLocaleString('en-US', { timeZone: 'Asia/Manila' }) } });
       res.send();                    
     }
   ))
@@ -235,7 +235,7 @@ const router = Router();
     async (req, res) =>{
       const {id} = req.body;
       const item = await ItemModel.findOne({_id: id});
-      await item!.updateOne({ $set: { "returned_id": item?.retriever_id, "returned_name": item?.retriever_name, "returned_email": item?.retriever_email, "returned_contactinfo": item?.retriever_contactinfo, "returned_date": new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' })} });
+      await item!.updateOne({ $set: { "returned_id": item?.retriever_id, "returned_name": item?.retriever_name, "returned_email": item?.retriever_email, "returned_contactinfo": item?.retriever_contactinfo, "returned_date": new Date().toLocaleString('en-US', { timeZone: 'Asia/Manila' })} });
       await item!.updateOne({ $set: { "status": true ,"retriever_id": "", "retriever_name": "", "retriever_email": "", "retriever_contactinfo": "", "retriever_date": "" } });
       res.send();                    
     }
@@ -254,7 +254,7 @@ const router = Router();
     async (req, res) =>{
       const {id} = req.body;
       const item = await ItemModel.findOne({_id: id});
-      await item!.updateOne({ $set: { "status": true ,"returned_id": item?.retriever_id, "returned_name": item?.retriever_name, "returned_email": item?.retriever_email, "returned_contactinfo": item?.retriever_contactinfo, "returned_date": new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' }) } });
+      await item!.updateOne({ $set: { "status": true ,"returned_id": item?.retriever_id, "returned_name": item?.retriever_name, "returned_email": item?.retriever_email, "returned_contactinfo": item?.retriever_contactinfo, "returned_date": new Date().toLocaleString('en-US', { timeZone: 'Asia/Manila' }) } });
       await item!.updateOne({ $set: { "retriever_id": "", "retriever_name": "", "retriever_email": "", "retriever_contactinfo": "", "retriever_date": ""  } });
       res.send();                    
     }
