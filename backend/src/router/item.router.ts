@@ -48,14 +48,14 @@ const router = Router();
 
   router.get("/found", asyncHandler(
     async (req, res) =>{
-        const items = await ItemModel.find({type: true}).sort({updatedAt:-1});
+        const items = await ItemModel.find({type: true}).sort({status: 1, date:-1});
         res.send(items);                       //sending items from database
     }
   ))
 
   router.get("/lost", asyncHandler(
     async (req, res) =>{
-        const items = await ItemModel.find({type: false}).sort({updatedAt:-1});
+        const items = await ItemModel.find({type: false}).sort({status: 1, date:-1});
         res.send(items);                
     }
   ))
@@ -69,14 +69,14 @@ const router = Router();
 
   router.get("/user/posts/:id", asyncHandler(
     async (req, res) =>{
-      const item = await ItemModel.find({poster_id: req.params.id}).sort({updatedAt:-1});
+      const item = await ItemModel.find({poster_id: req.params.id}).sort({updatedAt:-1, date:-1});
       res.send(item);                       
   }
   ))
 
   router.get("/all/posts", asyncHandler(
     async (req, res) =>{
-      const item = await ItemModel.find().sort({updatedAt:-1, type:1});
+      const item = await ItemModel.find().sort({updatedAt:-1, date:-1, type:1});
       res.send(item);                       
   }
   ))
